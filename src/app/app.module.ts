@@ -8,6 +8,7 @@ import { BlogSingleComponent } from './e-commerce/features/blogs/pages/blog-sing
 import { SharedModule } from './e-commerce/shared/shared.module';
 import { CoreModule } from './e-commerce/core/core.module';
 import { AuthModule } from './e-commerce/features/auth/auth.module';
+import { BlogModule } from './e-commerce/features/blogs/blog.module';
 import { ProductModule } from './e-commerce/features/product/product.module';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { ProductModule } from './e-commerce/features/product/product.module';
     SharedModule,
     CoreModule,
     AuthModule,
+    BlogModule
     ProductModule
   ],
   providers: [],

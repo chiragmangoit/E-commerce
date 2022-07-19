@@ -9,6 +9,9 @@ import { HeaderTopComponent } from './components/header/header-top/header-top.co
 import { HeaderBottomComponent } from './components/header/header-bottom/header-bottom.component';
 import { HeaderMiddleComponent } from './components/header/header-middle/header-middle.component';
 import { HeaderRoutingModule } from './header-routing.module';
+
+
+
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductNavigateComponent } from './components/product-navigate/product-navigate.component';
