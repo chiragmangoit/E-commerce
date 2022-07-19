@@ -11,6 +11,11 @@ import { HeaderMiddleComponent } from './components/header/header-middle/header-
 import { HeaderRoutingModule } from './header-routing.module';
 
 
+
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductNavigateComponent } from './components/product-navigate/product-navigate.component';
+
 @NgModule({
 
   declarations: [
@@ -22,8 +27,9 @@ import { HeaderRoutingModule } from './header-routing.module';
     HeaderTopComponent,
     HeaderBottomComponent,
     HeaderMiddleComponent,
+    ProductNavigateComponent,
   ],
-  imports: [CommonModule,HeaderRoutingModule],
+  imports: [CommonModule,HeaderRoutingModule,CarouselModule,BrowserAnimationsModule],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -32,6 +38,7 @@ import { HeaderRoutingModule } from './header-routing.module';
     RecommendedItemsComponent,
     HeaderTopComponent,
     HeaderBottomComponent,
+    ProductNavigateComponent,
     HeaderMiddleComponent,
   ],
 })
