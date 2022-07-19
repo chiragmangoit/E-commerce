@@ -15,6 +15,7 @@ import { HeaderRoutingModule } from './header-routing.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductNavigateComponent } from './components/product-navigate/product-navigate.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
 
@@ -28,6 +29,7 @@ import { ProductNavigateComponent } from './components/product-navigate/product-
     HeaderBottomComponent,
     HeaderMiddleComponent,
     ProductNavigateComponent,
+    CartComponent
   ],
   imports: [CommonModule,HeaderRoutingModule,CarouselModule,BrowserAnimationsModule],
   exports: [
@@ -40,6 +42,7 @@ import { ProductNavigateComponent } from './components/product-navigate/product-
     HeaderBottomComponent,
     ProductNavigateComponent,
     HeaderMiddleComponent,
+    CartComponent
   ],
 })
 export class SharedModule {}

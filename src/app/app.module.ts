@@ -10,6 +10,9 @@ import { CoreModule } from './e-commerce/core/core.module';
 import { AuthModule } from './e-commerce/features/auth/auth.module';
 import { BlogModule } from './e-commerce/features/blogs/blog.module';
 import { ProductModule } from './e-commerce/features/product/product.module';
+import { CartModule } from './e-commerce/features/cart/cart.module';
+import { CheckoutModule } from './e-commerce/features/checkout/checkout.module';
+import { ContactModule } from './e-commerce/features/contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,11 @@ import { ProductModule } from './e-commerce/features/product/product.module';
     SharedModule,
     CoreModule,
     AuthModule,
-    BlogModule
-    ProductModule
+    BlogModule,
+    ProductModule,
+    CartModule,
+    CheckoutModule,
+    ContactModule
   ],
   providers: [],
   bootstrap: [AppComponent]
