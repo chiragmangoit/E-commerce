@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './pages/home/page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
   
     HomeComponent,
-    SliderComponent
+    SliderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

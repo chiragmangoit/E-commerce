@@ -9,7 +9,6 @@ import { HeaderTopComponent } from './components/header/header-top/header-top.co
 import { HeaderBottomComponent } from './components/header/header-bottom/header-bottom.component';
 import { HeaderMiddleComponent } from './components/header/header-middle/header-middle.component';
 import { HeaderRoutingModule } from './header-routing.module';
-import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -23,7 +22,6 @@ import { CartComponent } from './components/cart/cart.component';
     HeaderTopComponent,
     HeaderBottomComponent,
     HeaderMiddleComponent,
-    CartComponent,
   ],
   imports: [CommonModule,HeaderRoutingModule],
   exports: [
@@ -35,7 +33,6 @@ import { CartComponent } from './components/cart/cart.component';
     HeaderTopComponent,
     HeaderBottomComponent,
     HeaderMiddleComponent,
-    CartComponent
   ],
 })
 export class SharedModule {}

@@ -10,9 +10,7 @@ import { BlogSingleComponent } from './e-commerce/features/blogs/pages/blog-sing
 import { SharedModule } from './e-commerce/shared/shared.module';
 import { CoreModule } from './e-commerce/core/core.module';
 import { AuthModule } from './e-commerce/features/auth/auth.module';
-import { CheckoutModule } from './e-commerce/features/checkout/checkout.module';
-import { CartModule } from './e-commerce/features/cart/cart.module';
-import { ContactModule } from './e-commerce/features/contact/contact.module';
+import { BlogModule } from './e-commerce/features/blogs/blog.module';
 
 @NgModule({
   declarations: [
@@ -28,9 +26,7 @@ import { ContactModule } from './e-commerce/features/contact/contact.module';
     SharedModule,
     CoreModule,
     AuthModule,
-    CheckoutModule,
-    CartModule,
-    ContactModule
+    BlogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
