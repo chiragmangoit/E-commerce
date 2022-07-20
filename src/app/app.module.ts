@@ -23,8 +23,8 @@ import { ProductModule } from './e-commerce/features/product/product.module';
     SharedModule,
     CoreModule,
     AuthModule,
-    BlogModule
-    ProductModule
+    BlogModule,
+    ProductModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
