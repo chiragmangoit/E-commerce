@@ -30,7 +30,7 @@ import { ContactModule } from './e-commerce/features/contact/contact.module';
     ProductModule,
     CartModule,
     CheckoutModule,
-    ContactModule
+    ContactModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

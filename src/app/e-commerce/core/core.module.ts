@@ -18,6 +18,7 @@ import { FeaturesItemIndexComponent } from './components/features-item-index/fea
   
     HomeComponent,
     SliderComponent,
+    PageNotFoundComponent, 
     PageNotFoundComponent,
     FeaturesItemIndexComponent,
 

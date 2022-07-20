@@ -9,6 +9,7 @@ import { BlogSinglePostsResponsesComponent } from './components/blog-single-post
 import { BlogSinglePostsCommentComponent } from './components/blog-single-posts-comment/blog-single-posts-comment.component';
 import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
+import { SharedModule } from '../../shared/shared.module';
 
 const appRoutes:Routes = [
   { path:'blog-list', component:BlogListComponent },
@@ -27,6 +28,7 @@ const appRoutes:Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(appRoutes),
+    SharedModule,
   ],
   exports: [
     BlogListBlogsComponent,
