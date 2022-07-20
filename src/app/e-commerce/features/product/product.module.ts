@@ -6,6 +6,7 @@ import { FeatureItemComponent } from './components/feature-item/feature-item.com
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ProductDetailNavComponent } from './components/product-detail-nav/product-detail-nav.component';
 import { SingleProductDetailComponent } from './components/single-product-detail/single-product-detail.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -19,7 +20,8 @@ import { SingleProductDetailComponent } from './components/single-product-detail
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    NgxPaginationModule,
   ],
   exports: [
     ProductDetailsComponent,
