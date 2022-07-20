@@ -23,3 +23,5 @@ margin-top: 5px;
 margin-right: 5px;
 border-radius: 9px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

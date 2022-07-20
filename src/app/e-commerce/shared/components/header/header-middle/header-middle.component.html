@@ -44,19 +44,32 @@
         <div class="shop-menu pull-right">
           <ul class="nav navbar-nav">
             <li *ngIf="isAuthenticated">
-              <a routerLink="/account" routerLinkActive="active"><i class="fa fa-user"></i> Account</a>
+              <a routerLink="/account" routerLinkActive="active"
+                ><i class="fa fa-user"></i> Account</a
+              >
             </li>
             <li>
               <a><i class="fa fa-star"></i> Wishlist</a>
             </li>
             <li>
-              <a routerLink="/checkout" routerLinkActive="active"><i class="fa fa-crosshairs"></i> Checkout</a>
+              <a routerLink="/checkout" routerLinkActive="active"
+                ><i class="fa fa-crosshairs"></i> Checkout</a
+              >
             </li>
             <li>
-              <a routerLink="/cart" routerLinkActive="active"><i class="fa fa-shopping-cart"></i> Cart</a>
+              <a routerLink="/cart" routerLinkActive="active"
+                ><i class="fa fa-shopping-cart"></i> Cart
+                <b class="badge">15</b>
+              </a>
             </li>
             <li>
-              <a routerLink="/login" routerLinkActive="active" (click)="onLogout()" ><i class="fa fa-lock"></i>{{ !isAuthenticated ? 'login' : 'logout' }}</a>
+              <a
+                routerLink="/login"
+                routerLinkActive="active"
+                (click)="onLogout()"
+                ><i class="fa fa-lock"></i
+                >{{ !isAuthenticated ? "login" : "logout" }}</a
+              >
             </li>
           </ul>
         </div>
@@ -65,4 +78,3 @@
   </div>
 </div>
 <!--/header-middle-->
- 

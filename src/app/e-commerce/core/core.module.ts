@@ -13,6 +13,7 @@ import { FeaturesItemIndexComponent } from './components/features-item-index/fea
 import { DataModule } from '../data/data.module';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 import { AccountComponent } from './pages/account/account.component';
+import { FormsModule } from '@angular/forms';
 
 const routes:Routes = [
   {path: 'account', component:AccountComponent}
@@ -30,6 +31,7 @@ const routes:Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    FormsModule,
     HttpClientModule,
     CarouselModule,
     BrowserAnimationsModule,
