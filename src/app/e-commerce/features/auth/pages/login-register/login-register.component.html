@@ -70,14 +70,28 @@
             <input
               type="text"
               placeholder="Name"
-              name="name"
+              name="firstName"
               ngModel
               required
-              #name="ngModel"
+              #firstName="ngModel"
             />
             <span
               class="alert alert-danger"
-              *ngIf="!name.valid && name.errors.required && name.touched"
+              *ngIf="!firstName.valid && firstName.errors.required && firstName.touched"
+            >
+              Name is required!
+            </span>
+            <input
+              type="text"
+              placeholder="Name"
+              name="lastName"
+              ngModel
+              required
+              #lastName="ngModel"
+            />
+            <span
+              class="alert alert-danger"
+              *ngIf="!lastName.valid && lastName.errors.required && lastName.touched"
             >
               Name is required!
             </span>
