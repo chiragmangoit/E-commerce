@@ -14,6 +14,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductNavigateComponent } from './components/product-navigate/product-navigate.component';
 import { CartComponent } from './components/cart/cart.component';
+import { NouisliderModule } from 'ng2-nouislider';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CartComponent } from './components/cart/cart.component';
     HeaderRoutingModule,
     CarouselModule,
     BrowserAnimationsModule,
+    NouisliderModule
   ],
   exports: [
     HeaderComponent,
