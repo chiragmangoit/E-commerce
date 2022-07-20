@@ -32,13 +32,15 @@
               "src/assets/css/responsive.css",
               "src/assets/css/price-range.css",
               "src/assets/css/animate.css",
-              "./node_modules/nouislider/dist/nouislider.css"
+              "./node_modules/nouislider/dist/nouislider.css",
+              "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/jquery.scrollup/dist/jquery.scrollUp.min.js",
-              "./node_modules/nouislider/dist/nouislider.min.js"
+              "./node_modules/nouislider/dist/nouislider.min.js",
+              "./node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js"
             ]
           },
           "configurations": {
