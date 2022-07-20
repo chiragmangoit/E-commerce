@@ -16,6 +16,7 @@ export class FilterBarComponent implements OnInit {
     margin: 1,
     tooltips: [true, true],
     start: [0, 600],
+    step: 1,
     range: {
       min: 0,
       max: 600,

@@ -4,17 +4,22 @@ a {
   cursor: pointer;
 }
 
-.noUi-connect {
-  background: #fe980f !important;
-}
-.noUi-handle {
-  border-radius: 100% !important;
-  border: 5px !important;
-  background: #40403e !important;
-}
 .noUi-handle:before, .noUi-handle:after {
-    content: none !important;
+  content: none !important;
 }
-.noUi-tooltip {
-    background: #fe980f !important;
+
+#slider-round {
+height: 10px;
+}
+
+#slider-round .noUi-connect {
+background: #fe980f;
+}
+
+#slider-round .noUi-handle {
+height: 18px;
+width: 18px;
+margin-top: 5px;
+margin-right: 5px;
+border-radius: 9px;
 }
