@@ -1,0 +1,46 @@
+<div class="account" *ngIf="!onEdit">
+    <div class="prof_img">
+        <img src="../../../../../assets/images/account.png" alt="" width="150px">
+        <br>
+        <label>Account Details</label>
+    </div>
+    <div class="details">
+        <div class="single_detail">
+            <label>First Name</label>
+            <h4>Mohit</h4>
+        </div>
+        <div class="single_detail">
+            <label>Last Name</label>
+            <h4>Upadhyay</h4>
+        </div>
+        <div class="single_detail">
+            <label>Email Address</label>
+            <h4>mohitu531@gmail.com</h4>
+        </div>
+        <hr>
+    </div>
+    <button class="btn btn-success" (click)="edit()">Edit</button>
+</div>
+
+<div class="edit_form" *ngIf="onEdit">
+    <div class="prof_img">
+        <img src="../../../../../assets/images/account.png" alt="" width="150px">
+        <br>
+        <label>Account Details</label>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="email">First Name:</label>
+            <input type="test" class="form-control" id="first_name">
+        </div>
+        <div class="form-group">
+            <label for="email">Last Name:</label>
+            <input type="test" class="form-control" id="last_name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <button type="submit" class="btn btn-success" (click)="update()">Update</button>
+    </form>
+</div>
