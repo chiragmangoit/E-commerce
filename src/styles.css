@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 a {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.noUi-connect {
+  background: #fe980f !important;
+}
+.noUi-handle {
+  border-radius: 100% !important;
+  border: 5px !important;
+  background: #40403e !important;
+}
+.noUi-handle:before, .noUi-handle:after {
+    content: none !important;
+}
+.noUi-tooltip {
+    background: #fe980f !important;
 }
