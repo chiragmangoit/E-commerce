@@ -115,7 +115,11 @@ export class FeatureItemComponent implements OnInit {
       price: '$56',
       desc: 'Easy Polo Black Edition'
     },
-
+    {
+      src: '../../../../../assets/images/home/product6.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    },
     {
       src: '../../../../../assets/images/home/product2.jpg',
       price: '$56',

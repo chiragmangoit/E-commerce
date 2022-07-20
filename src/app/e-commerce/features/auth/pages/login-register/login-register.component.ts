@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {  Router } from '@angular/router';
+import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
 
 
 @Component({
@@ -10,16 +12,25 @@ import { NgForm } from '@angular/forms';
 export class LoginRegisterComponent implements OnInit {
   @ViewChild('loginForm') loginForm:NgForm;
   @ViewChild('signUpForm') signUpForm:NgForm;
-  constructor() { }
+  constructor( private authService:AuthService, private router:Router ) { }
 
   ngOnInit(): void {
   }
 
   onLogin() {
-    console.log(this.loginForm.value); 
+    this.authService.signIn(this.loginForm.value).subscribe(
+      response => {
+        this.router.navigate(['']);
+      },
+      errorMessage => {
+        console.log(errorMessage);
+        
+      }
+    );
   }
 
   onSignUp() {
-    console.log(this.signUpForm.value);
+    this.authService.signUp(this.signUpForm.value).subscribe();
+    
   }
 }
