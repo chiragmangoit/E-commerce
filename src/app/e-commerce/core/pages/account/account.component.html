@@ -7,15 +7,15 @@
     <div class="details">
         <div class="single_detail">
             <label>First Name</label>
-            <h4>Mohit</h4>
+            <h4>{{first_name}}</h4>
         </div>
         <div class="single_detail">
             <label>Last Name</label>
-            <h4>Upadhyay</h4>
+            <h4>{{last_name}}</h4>
         </div>
         <div class="single_detail">
             <label>Email Address</label>
-            <h4>mohitu531@gmail.com</h4>
+            <h4>{{email}}</h4>
         </div>
         <hr>
     </div>
@@ -28,19 +28,26 @@
         <br>
         <label>Account Details</label>
     </div>
-    <form>
+    <form (ngSubmit)="f.form.valid && update(f)" #f="ngForm">
+
+        
+
         <div class="form-group">
             <label for="email">First Name:</label>
-            <input type="test" class="form-control" id="first_name">
+            <input type="test" class="form-control" id="first_name" name="first_name" [(ngModel)]="first_name" required
+                pattern="^[A-Za-z]+$">
         </div>
         <div class="form-group">
             <label for="email">Last Name:</label>
-            <input type="test" class="form-control" id="last_name">
+            <input type="test" class="form-control" name="last_name" id="last_name" [(ngModel)]="last_name" required
+                pattern="^[A-Za-z]+$">
         </div>
         <div class="form-group">
             <label for="email">Email address:</label>
-            <input type="email" class="form-control" id="email">
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required email>
         </div>
-        <button type="submit" class="btn btn-success" (click)="update()">Update</button>
+
+
+        <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Update</button>
     </form>
 </div>
