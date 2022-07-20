@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
 
 @Component({
   selector: 'app-header-middle',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-middle.component.css']
 })
 export class HeaderMiddleComponent implements OnInit {
+  isAuthenticated:boolean = false;
 
-  constructor() { }
+  constructor( private authService:AuthService ) { }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(
+      user => {
+        this.isAuthenticated = !!user;
+      }
+    )
   }
 
+  onLogout() {
+    this.authService.logOut();
+  }
 }
