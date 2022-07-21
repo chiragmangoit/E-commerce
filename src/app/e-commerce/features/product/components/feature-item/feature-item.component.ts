@@ -1,152 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Product } from 'src/app/e-commerce/data/models/product.model';
+import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
 
 @Component({
   selector: 'app-feature-item',
   templateUrl: './feature-item.component.html',
-  styleUrls: ['./feature-item.component.css']
+  styleUrls: ['./feature-item.component.css'],
 })
-export class FeatureItemComponent implements OnInit {
+export class FeatureItemComponent implements OnInit, OnDestroy {
+  productData: Product['data'];
 
-  constructor() { }
+  subscription: Subscription;
+
+  constructor(private productDataService: ProductsService) {}
 
   ngOnInit(): void {
+    this.subscription = this.productDataService
+      .getData()
+      .subscribe((product) => {
+        this.productData = product.data;
+        console.log(product);
+      });
   }
 
   p: number = 1;
-
-  featureItem = [
-    {
-      src: '../../../../../assets/images/home/product1.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product2.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product3.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product4.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product5.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product6.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product1.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product2.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product3.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product4.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product5.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product6.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product4.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product5.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product6.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product1.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product2.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product3.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product4.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product5.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product6.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product2.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product3.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product4.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product5.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    },
-    {
-      src: '../../../../../assets/images/home/product6.jpg',
-      price: '$56',
-      desc: 'Easy Polo Black Edition'
-    }
-
-
   
-  ];
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe;
+  }
+
 }
