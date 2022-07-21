@@ -26,7 +26,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   exports: [
     ProductDetailsComponent,
     ProductListComponent,
-    ProductDetailNavComponent
+    ProductDetailNavComponent,
   ]
 })
 export class ProductModule { }
