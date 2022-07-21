@@ -11,6 +11,7 @@ import { BlogListComponent } from './pages/blog-list/blog-list.component';
 import { BlogSingleComponent } from './pages/blog-single/blog-single.component';
 import { SharedModule } from '../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const appRoutes:Routes = [
   { path:'blog-list', component:BlogListComponent },
@@ -31,6 +32,7 @@ const appRoutes:Routes = [
     RouterModule.forChild(appRoutes),
     SharedModule,
     FormsModule,
+    NgxPaginationModule,
   ],
   exports: [
     BlogListBlogsComponent,
