@@ -25,7 +25,7 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((respData) => {
-          console.log(respData);
+          
         })
       );
   }
@@ -62,17 +62,14 @@ export class AuthService {
 
   private handleError(errResponse: HttpErrorResponse) {
     let errorMessage = 'An unknown error occured!';
-    if (
-      !errResponse.error ||
-      !errResponse.error.data ||
-      !errResponse.error.message
-    ) {
+    if (!errResponse.error || !errResponse.error.data) {
       return throwError(errorMessage);
     }
+
     if (errResponse.error.message) {
       errorMessage = errResponse.error.message;
-      return errorMessage;
     }
+
     for (const [key, val] of Object.entries(errResponse.error.data)) {
       switch (key) {
         case 'first_name':
@@ -89,6 +86,7 @@ export class AuthService {
           break;
       }
     }
+
     return throwError(errorMessage);
   }
 }
