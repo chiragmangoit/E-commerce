@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Subscription } from 'rxjs';
+import { Banner } from 'src/app/e-commerce/data/models/banner.model';
+import { BannerService } from 'src/app/e-commerce/data/services/banner.service';
 
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnDestroy {
+  banner:Banner["data"];
+  subscription: Subscription;
 
-  constructor() { }
+  constructor( private bannerService:BannerService ) { }
 
   ngOnInit(): void {
+    this.subscription = this.bannerService.getBanner().subscribe(
+      bannerData => {
+        this.banner = bannerData.data; 
+        console.log(this.banner);
+        
+      }
+    )
   }
 
   customOptions: OwlOptions = {
@@ -36,6 +48,10 @@ export class SliderComponent implements OnInit {
       }
     },
     nav: true
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

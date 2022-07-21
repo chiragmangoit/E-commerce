@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 a {
   cursor: pointer;
@@ -23,5 +25,21 @@ margin-top: 5px;
 margin-right: 5px;
 border-radius: 9px;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.owl-prev{
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  font-size: 100px;
+  color: #c2c2c1;
+  display: block !important;
+}
+
+.owl-next {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 100px;
+  color: #c2c2c1;
+  display: block !important;
+}

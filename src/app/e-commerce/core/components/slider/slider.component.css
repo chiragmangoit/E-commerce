@@ -1,13 +1,4 @@
 .slide {
-    height: 70vh;
+  height: 70vh;
 }
 
-.owl-next {
-    font-size: 70px;
-    color: lightgrey;
-}
-
-.owl-prev {
-    font-size: 70px;
-    color: lightgrey;
-}
