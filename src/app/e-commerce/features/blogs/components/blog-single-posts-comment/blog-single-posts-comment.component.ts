@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-blog-single-posts-comment',
@@ -8,6 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class BlogSinglePostsCommentComponent implements OnInit {
 
   constructor() { }
+  
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    form.reset();
+  }  
 
   ngOnInit(): void {
   }
