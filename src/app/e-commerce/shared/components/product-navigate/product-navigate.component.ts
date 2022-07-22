@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Subscription } from 'rxjs';
 import { CategoryService } from 'src/app/e-commerce/data/services/category.service';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
@@ -8,28 +8,33 @@ import { ProductsService } from 'src/app/e-commerce/data/services/products.servi
   templateUrl: './product-navigate.component.html',
   styleUrls: ['./product-navigate.component.css'],
 })
-export class ProductNavigateComponent implements OnInit {
+export class ProductNavigateComponent implements OnInit, OnDestroy {
   categoryData: [
     {
       id: number;
       name: string;
     }
   ];
+  productsData:any ;
+  products: [];
   categorySubscription: Subscription;
+  productSubscription: Subscription;
+  selectedIndex: number;
+  defaultCategory: number;
   constructor(
     private categoryService: CategoryService,
-    private productData: ProductsService
+    private productDataService: ProductsService
   ) {}
 
   ngOnInit(): void {
-
     this.categorySubscription = this.categoryService
       .getCategory()
       .subscribe((catData) => {
         this.categoryData = catData;
+        this.defaultCategory = this.categoryData[0].id;
       });
 
-    this.productData
+    this.productSubscription = this.productDataService
       .getData()
       .pipe(
         map((data) => {
@@ -37,8 +42,20 @@ export class ProductNavigateComponent implements OnInit {
         })
       )
       .subscribe((productData) => {
-        console.log(productData);
-        
+        this.productsData = productData;
+        this.showProducts(this.defaultCategory, 0);
       });
+  }
+
+  showProducts(id: number, index: number) {
+    this.products = this.productsData.filter(
+      (product) => product.cat_id === id
+    );
+    this.selectedIndex = index;
+  }
+
+  ngOnDestroy(): void {
+    this.categorySubscription.unsubscribe();
+    this.productSubscription.unsubscribe();
   }
 }
