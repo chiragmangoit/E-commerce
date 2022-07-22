@@ -13,6 +13,7 @@ import { ProductModule } from './e-commerce/features/product/product.module';
 import { CartModule } from './e-commerce/features/cart/cart.module';
 import { CheckoutModule } from './e-commerce/features/checkout/checkout.module';
 import { ContactModule } from './e-commerce/features/contact/contact.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ContactModule } from './e-commerce/features/contact/contact.module';
     CartModule,
     CheckoutModule,
     ContactModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
