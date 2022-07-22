@@ -1,29 +1,55 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Subscription } from 'rxjs';
-import { Product } from 'src/app/e-commerce/data/models/product.model';
-import { RecommendedItemsService } from 'src/app/e-commerce/data/services/recommended-items.service';
 
 @Component({
   selector: 'app-recommended-items',
   templateUrl: './recommended-items.component.html',
-  styleUrls: ['./recommended-items.component.css'],
+  styleUrls: ['./recommended-items.component.css']
 })
-export class RecommendedItemsComponent implements OnInit, OnDestroy {
-  items: Product['data'];
-  subscription: Subscription;
+export class RecommendedItemsComponent implements OnInit {
 
-  constructor(private recommendedItemServise: RecommendedItemsService) {}
+
+
+  recommandedItem = [
+    {
+      src: '../../../../../assets/images/home/recommend1.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    },
+    {
+      src: '../../../../../assets/images/home/recommend2.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    },
+    {
+      src: '../../../../../assets/images/home/recommend3.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    },
+    {
+      src: '../../../../../assets/images/home/recommend1.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    },
+    {
+      src: '../../../../../assets/images/home/recommend2.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    },
+    {
+      src: '../../../../../assets/images/home/recommend3.jpg',
+      price: '$56',
+      desc: 'Easy Polo Black Edition'
+    }
+  ];
+
+
+  constructor() { }
 
   ngOnInit(): void {
-    this.subscription = this.recommendedItemServise
-      .getItems()
-      .subscribe((itemData) => {
-        this.items = itemData.data;
-      });
   }
 
-  customOptions: OwlOptions = {
+  recomm: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
@@ -31,24 +57,21 @@ export class RecommendedItemsComponent implements OnInit, OnDestroy {
     dots: true,
     navSpeed: 600,
     navText: ['&#8249', '&#8250;'],
-    nav: true,
     responsive: {
       0: {
-        items: 1,
+        items: 1 
       },
       400: {
-        items: 2,
+        items: 2
       },
       760: {
-        items: 3,
+        items: 3
       },
       1000: {
-        items: 3,
-      },
+        items: 3
+      }
     },
-  };
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    nav: true
   }
+
 }
