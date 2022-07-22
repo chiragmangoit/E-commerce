@@ -9,14 +9,11 @@ import { ProductsService } from 'src/app/e-commerce/data/services/products.servi
   styleUrls: ['./feature-item.component.css'],
 })
 export class FeatureItemComponent implements OnInit, OnDestroy {
-  
   productData: Product['data'];
 
   subscription: Subscription;
 
   constructor(private productDataService: ProductsService) {}
-  
-  
 
   ngOnInit(): void {
     this.subscription = this.productDataService
@@ -24,12 +21,11 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
       .subscribe((product) => {
         this.productData = product.data;
         console.log(product);
-        
       });
   }
 
-  page: number = 1;
-
+  p: number = 1;
+  
   ngOnDestroy(): void {
     this.subscription.unsubscribe;
   }
