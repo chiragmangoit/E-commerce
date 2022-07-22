@@ -7,8 +7,19 @@ import { ProductDetailsComponent } from './pages/product-details/product-details
 import { ProductDetailNavComponent } from './components/product-detail-nav/product-detail-nav.component';
 import { SingleProductDetailComponent } from './components/single-product-detail/single-product-detail.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RouterModule, Routes } from '@angular/router';
+import { ProductMainComponent } from './pages/product-main/product-main.component';
 
-
+const productRoutes: Routes = [
+  {
+    path: 'product',
+    component: ProductMainComponent,
+    children: [
+      { path: '', component: ProductListComponent },
+      { path: ':id', component: ProductDetailsComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
@@ -16,17 +27,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProductListComponent,
     FeatureItemComponent,
     ProductDetailNavComponent,
-    SingleProductDetailComponent
+    SingleProductDetailComponent,
+    ProductMainComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     NgxPaginationModule,
+    RouterModule.forChild(productRoutes),
   ],
   exports: [
     ProductDetailsComponent,
     ProductListComponent,
     ProductDetailNavComponent,
-  ]
+  ],
 })
-export class ProductModule { }
+export class ProductModule {}

@@ -59,3 +59,4 @@ export class ProductNavigateComponent implements OnInit, OnDestroy {
     this.productSubscription.unsubscribe();
   }
 }
+ 
