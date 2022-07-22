@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/e-commerce/data/models/product.model';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,12 +9,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  showTotal = true;
-  constructor(private router: Router) {}
+  showTotal: boolean = true;
+  product: Product[] = [];
+  quantity: number;
+
+  constructor(private router: Router, private cartService: CartService) {}
 
   ngOnInit(): void {
     if (this.router.url === '/cart') {
-     this.showTotal = false
+      this.showTotal = false;
     }
+    this.product = this.cartService.getCartProducts();
+    console.log(this.product);
+  }
+
+  add(product) {
+    product.quantity++;
+    this.cartService.cartValue++;
+    this.cartService.cartQuantity.next(this.cartService.cartValue)
+  }
+
+  substract(product) {
+    product.quantity--;
+    this.cartService.cartValue--;
+    this.cartService.cartQuantity.next(this.cartService.cartValue)
+  }
+
+  removeItem(index: number, quantity: number) {
+    this.cartService.removeCartProduct(index, quantity);
   }
 }
