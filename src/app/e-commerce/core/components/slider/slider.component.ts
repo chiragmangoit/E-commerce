@@ -19,6 +19,9 @@ export class SliderComponent implements OnInit, OnDestroy {
     this.subscription = this.bannerService.getBanner().subscribe(
       bannerData => {
         this.banner = bannerData.data; 
+
+        console.log(this.banner);
+
       }
     )
   }
