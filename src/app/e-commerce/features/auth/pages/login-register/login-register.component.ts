@@ -30,14 +30,7 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   onSignUp() {
-    this.authService.signUp(this.signUpForm.value).subscribe(
-      response => {
-       alert('Registered Successfully,Please Login to Continue')
-      },
-      errorMessage => {
-        console.log(errorMessage);
-      }
-    );
+    this.authService.signUp(this.signUpForm.value).subscribe();
     
   }
 }
