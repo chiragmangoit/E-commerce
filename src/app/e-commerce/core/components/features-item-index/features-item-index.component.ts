@@ -3,20 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
 import { Subscription } from 'rxjs';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 
 @Component({
   selector: 'app-features-item-index',
   templateUrl: './features-item-index.component.html',
   styleUrls: ['./features-item-index.component.css'],
 })
-export class FeaturesItemIndexComponent implements OnInit, OnDestroy{
+export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
   productData: Product['data'];
 
   subscription: Subscription;
 
   constructor(
-    private serviceData: HttpClient,
-    private productDataService: ProductsService
+    private productDataService: ProductsService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +28,11 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy{
       });
   }
 
+  addToCart(data: Product) {
+    this.cartService.cart(data);
+  }
+
   ngOnDestroy(): void {
-      this.subscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

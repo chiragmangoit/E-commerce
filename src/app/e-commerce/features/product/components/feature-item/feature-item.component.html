@@ -1,7 +1,12 @@
 <h2 class="title text-center">Features Items</h2>
 <div class="row">
   <div
+
     *ngFor="let data of productData| paginate: { itemsPerPage: 12, currentPage: page }"
+    *ngFor="
+      let product of productData
+        | paginate: { itemsPerPage: 12, currentPage: page }
+    "
   >
     <div class="col-sm-4">
       <div class="product-image-wrapper">
@@ -11,6 +16,14 @@
             <h2>{{ data.price }}</h2>
             <p>{{ data.product_name }}</p>
             <a class="btn btn-default add-to-cart"
+            <img
+              src="{{ product.banner }}"
+              alt=""
+              routerLink="./{{ product.id }}"
+            />
+            <h2>{{ product.price }}</h2>
+            <p>{{ product.product_name }}</p>
+            <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
               ><i class="fa fa-shopping-cart"></i>Add to cart</a
             >
           </div>

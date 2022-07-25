@@ -11,107 +11,41 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let item of product; let i = index">
         <td class="cart_product">
-          <a
-            ><img src="../../../../../assets/images/cart/one.png" alt=""
-          /></a>
+          <a><img [src]="item.banner" alt="" /></a>
         </td>
         <td class="cart_description">
-          <h4><a>Colorblock Scuba</a></h4>
-          <p>Web ID: 1089772</p>
+          <h4>
+            <a>{{ item.product_name }}</a>
+          </h4>
+          <p>Web ID: {{ item.Web_ID }}}</p>
         </td>
         <td class="cart_price">
-          <p>$59</p>
+          <p>${{ item.price }}</p>
         </td>
         <td class="cart_quantity">
           <div class="cart_quantity_button">
-            <a class="cart_quantity_up"> + </a>
+            <a class="cart_quantity_up" (click)="add(item)"> + </a>
             <input
               class="cart_quantity_input"
               type="text"
               name="quantity"
-              value="1"
+              disabled
+              [value]="item.quantity"
               autocomplete="off"
               size="2"
             />
-            <a class="cart_quantity_down"> - </a>
+              <a class="cart_quantity_down" (click)="substract(item)"> - </a>
           </div>
         </td>
         <td class="cart_total">
-          <p class="cart_total_price">$59</p>
+          <p class="cart_total_price">${{ item.price * item.quantity }}</p>
         </td>
         <td class="cart_delete">
-          <a class="cart_quantity_delete"><i class="fa fa-times"></i></a>
-        </td>
-      </tr>
-
-      <tr>
-        <td class="cart_product">
-          <a
-            ><img src="../../../../../assets/images/cart/two.png" alt=""
-          /></a>
-        </td>
-        <td class="cart_description">
-          <h4><a>Colorblock Scuba</a></h4>
-          <p>Web ID: 1089772</p>
-        </td>
-        <td class="cart_price">
-          <p>$59</p>
-        </td>
-        <td class="cart_quantity">
-          <div class="cart_quantity_button">
-            <a class="cart_quantity_up"> + </a>
-            <input
-              class="cart_quantity_input"
-              type="text"
-              name="quantity"
-              value="1"
-              autocomplete="off"
-              size="2"
-            />
-            <a class="cart_quantity_down"> - </a>
-          </div>
-        </td>
-        <td class="cart_total">
-          <p class="cart_total_price">$59</p>
-        </td>
-        <td class="cart_delete">
-          <a class="cart_quantity_delete"><i class="fa fa-times"></i></a>
-        </td>
-      </tr>
-      <tr>
-        <td class="cart_product">
-          <a
-            ><img src="../../../../../assets/images/cart/three.png" alt=""
-          /></a>
-        </td>
-        <td class="cart_description">
-          <h4><a>Colorblock Scuba</a></h4>
-          <p>Web ID: 1089772</p>
-        </td>
-        <td class="cart_price">
-          <p>$59</p>
-        </td>
-        <td class="cart_quantity">
-          <div class="cart_quantity_button">
-            <a class="cart_quantity_up"> + </a>
-            <input
-              class="cart_quantity_input"
-              type="text"
-              name="quantity"
-              value="1"
-              autocomplete="off"
-              size="2"
-            />
-            <a class="cart_quantity_down"> - </a>
-          </div>
-        </td>
-        <td class="cart_total">
-          <p class="cart_total_price">$59</p>
-        </td>
-        <td class="cart_delete">
-          <a class="cart_quantity_delete"><i class="fa fa-times"></i></a>
+          <a class="cart_quantity_delete" (click)="removeItem(i, item.quantity)"
+            ><i class="fa fa-times"></i
+          ></a>
         </td>
       </tr>
       <tr>

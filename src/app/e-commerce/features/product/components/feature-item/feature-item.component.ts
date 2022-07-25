@@ -12,8 +12,8 @@ import { WishListService } from 'src/app/e-commerce/data/services/wish-list.serv
 export class FeatureItemComponent implements OnInit, OnDestroy {
   
   productData: Product['data'];
-
   subscription: Subscription;
+  page: number = 1;
 
   constructor(private productDataService: ProductsService,
     private wishList: WishListService) {}
@@ -23,6 +23,9 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
   }
 
 
+  constructor(private productDataService: ProductsService) {}
+  
+  
 
   ngOnInit(): void {
     this.subscription = this.productDataService
@@ -33,6 +36,14 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
   }
 
   page: number = 1;
+        this.productData = product.data;
+      });
+  }
+
+  addToCart(product:Product) {
+    console.log(product);
+    console.log('test');
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe;
