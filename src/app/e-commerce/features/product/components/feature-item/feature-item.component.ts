@@ -11,8 +11,8 @@ import { ProductsService } from 'src/app/e-commerce/data/services/products.servi
 export class FeatureItemComponent implements OnInit, OnDestroy {
   
   productData: Product['data'];
-
   subscription: Subscription;
+  page: number = 1;
 
   constructor(private productDataService: ProductsService) {}
   
@@ -23,12 +23,13 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
       .getData()
       .subscribe((product) => {
         this.productData = product.data;
-        console.log(product);
-        
       });
   }
 
-  page: number = 1;
+  addToCart(product:Product) {
+    console.log(product);
+    console.log('test');
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe;

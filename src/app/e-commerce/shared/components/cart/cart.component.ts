@@ -30,8 +30,10 @@ export class CartComponent implements OnInit {
   }
 
   substract(product) {
-    product.quantity--;
-    this.cartService.cartValue--;
+    if ( product.quantity >= 2 ) {
+      product.quantity--;
+      this.cartService.cartValue--;
+    }
     this.cartService.cartQuantity.next(this.cartService.cartValue)
   }
 

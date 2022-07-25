@@ -31,11 +31,12 @@
               class="cart_quantity_input"
               type="text"
               name="quantity"
+              disabled
               [value]="item.quantity"
               autocomplete="off"
               size="2"
             />
-            <a class="cart_quantity_down" (click)="substract(item)"> - </a>
+              <a class="cart_quantity_down" (click)="substract(item)"> - </a>
           </div>
         </td>
         <td class="cart_total">
