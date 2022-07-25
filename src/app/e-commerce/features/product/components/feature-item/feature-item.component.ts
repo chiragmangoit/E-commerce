@@ -19,13 +19,9 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
     private wishList: WishListService) {}
   
   addToWishList(data) {
-    this.wishList.addWishListData(data);
+    this.wishList.addWishListData(data);    
   }
 
-
-  constructor(private productDataService: ProductsService) {}
-  
-  
 
   ngOnInit(): void {
     this.subscription = this.productDataService
@@ -34,12 +30,6 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
         this.productData = product.data;       
       });
   }
-
-  page: number = 1;
-        this.productData = product.data;
-      });
-  }
-
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe;

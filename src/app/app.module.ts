@@ -14,6 +14,7 @@ import { CartModule } from './e-commerce/features/cart/cart.module';
 import { CheckoutModule } from './e-commerce/features/checkout/checkout.module';
 import { ContactModule } from './e-commerce/features/contact/contact.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WishListModule } from './e-commerce/features/whish-list/wish-list.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartModule,
     CheckoutModule,
     ContactModule,
+    WishListModule,
     BrowserAnimationsModule,
   ],
   providers: [],

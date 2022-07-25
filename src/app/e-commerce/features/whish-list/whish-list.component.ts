@@ -14,7 +14,6 @@ export class WhishListComponent implements OnInit {
 
   ngOnInit(): void {
     this.wishListData = this.wishList.getWishListData();
-    console.log(this.wishListData);
   }
 
 }
