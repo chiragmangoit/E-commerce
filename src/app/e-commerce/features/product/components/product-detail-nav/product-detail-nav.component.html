@@ -177,7 +177,17 @@
                         <input type="email" placeholder="Email Address"/>
                     </span>
                     <textarea name="" ></textarea>
-                    <b>Rating: </b> <img src="../../../../../../assets/images/product-details/rating.png" alt="" />
+                    <b>Rating: </b> 
+                   
+                        <div class="rating">
+                            <ul class="list-inline rating-list" 
+                                *ngFor="let star of stars" style="display: inline-block" >
+                                  <li (click)="countStar(star)"
+                                      [ngClass]="{'selected': (star <= selectedValue)}">
+                                    <i class="fa fa-star"></i>
+                                  </li> 
+                            </ul>
+                        </div>
                     <button type="button" class="btn btn-default pull-right">
                         Submit
                     </button>
