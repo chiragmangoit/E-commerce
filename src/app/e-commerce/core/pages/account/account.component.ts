@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggedUser } from 'src/app/e-commerce/data/models/login.model';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  styleUrls: ['./account.component.css'],
 })
 export class AccountComponent implements OnInit {
-
-  first_name:string;
-  last_name:string;
-  email:string;
+  first_name: string;
+  last_name: string;
+  email: string;
 
   onEdit = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.first_name = 'Mohit';
-    this.last_name= 'Upadhyay';
+    this.last_name = 'Upadhyay';
     this.email = 'mohitu531@gmail.com';
   }
   edit() {
@@ -28,5 +29,4 @@ export class AccountComponent implements OnInit {
     console.log(f.value);
     this.onEdit = false;
   }
-
 }

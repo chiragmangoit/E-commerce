@@ -4,11 +4,10 @@
     <div class="view-product">
       <a
         data-fancybox="gallery"
-        href="../../../../../../assets/images/product-details/1.jpg"
+        href="{{ productDetails.banner }}"
       >
         <img src="{{ productDetails.banner }}" />
       </a>
-      <h3>ZOOM</h3>
     </div>
     <div id="similar-product" class="carousel slide" data-ride="carousel">
       <!-- Wrapper for slides -->
@@ -98,8 +97,8 @@
       <span>
         <span>US $ {{ productDetails.price }}</span>
         <label>Quantity:</label>
-        <input type="text" value="3" />
-        <button type="button" class="btn btn-fefault cart">
+        <input type="text" disabled value="1" />
+        <button type="button" class="btn btn-fefault cart" (click)="addtoCart(productDetails)">
           <i class="fa fa-shopping-cart"></i>
           Add to cart
         </button>

@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of product; let i = index ">
+      <tr *ngFor="let item of product; let i = index">
         <td class="cart_product">
           <a><img [src]="item.banner" alt="" /></a>
         </td>
@@ -26,7 +26,7 @@
         </td>
         <td class="cart_quantity">
           <div class="cart_quantity_button">
-            <a class="cart_quantity_up" (click)="add(item)"> + </a>
+            <a class="cart_quantity_down" (click)="substract(item)"> - </a>
             <input
               class="cart_quantity_input"
               type="text"
@@ -36,7 +36,7 @@
               autocomplete="off"
               size="2"
             />
-              <a class="cart_quantity_down" (click)="substract(item)"> - </a>
+            <a class="cart_quantity_up" (click)="add(item)"> + </a>
           </div>
         </td>
         <td class="cart_total">

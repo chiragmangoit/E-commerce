@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Params } from '@angular/router';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
+import { Product } from 'src/app/e-commerce/data/models/product.model';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 
 @Component({
   selector: 'app-single-product-detail',
@@ -13,12 +15,13 @@ export class SingleProductDetailComponent implements OnInit {
   
   productId: number;
   
-  productDetails;
+  productDetails:Product['data'];
 
-  subscription;
+  subscription:Subscription;
 
   constructor(
-    private ProductsService: ProductsService,
+    private productsService: ProductsService,
+    private cartService:CartService,
     private routes: ActivatedRoute
   ) {}
 
@@ -26,10 +29,15 @@ export class SingleProductDetailComponent implements OnInit {
     this.routes.params.subscribe((params: Params) => {
       this.productId = +params['id'];
     });
-    this.subscription = this.ProductsService.getProductDetails(
+    this.subscription = this.productsService.getProductDetails(
       this.productId
     ).subscribe((product) => {
       this.productDetails = product.data;
     });
   }
+
+  addtoCart(product:Product) {
+    this.cartService.cart(product);
+  }
+  
 }

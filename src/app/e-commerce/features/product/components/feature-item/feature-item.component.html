@@ -15,7 +15,7 @@
               alt=""
               routerLink="./{{ product.id }}"
             />
-            <h2>{{ product.price }}</h2>
+            <h2 >${{ product.price }}</h2>
             <p>{{ product.product_name }}</p>
             <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
               ><i class="fa fa-shopping-cart"></i>Add to cart</a
@@ -28,9 +28,6 @@
               <a (click)="addToWishList(product)"
                 ><i class="fa fa-plus-square"></i>Add to wishlist</a
               >
-            </li>
-            <li>
-              <a><i class="fa fa-plus-square"></i>Add to compare</a>
             </li>
           </ul>
         </div>

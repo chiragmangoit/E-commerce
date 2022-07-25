@@ -6,9 +6,10 @@ import { ReviewPaymentComponent } from './components/review-payment/review-payme
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { AuthGuardService } from '../../core/guards/auth-guard.service';
 
 const routes:Routes = [
-  { path:'checkout', component:CheckoutComponent}
+  { path:'checkout', component:CheckoutComponent,canActivate:[AuthGuardService]}
 ]
 
 @NgModule({
