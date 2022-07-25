@@ -26,10 +26,6 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
       });
   }
 
-  addToCart(product:Product) {
-    console.log(product);
-    console.log('test');
-  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe;
