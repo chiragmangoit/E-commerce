@@ -9,6 +9,7 @@ import { SingleProductDetailComponent } from './components/single-product-detail
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductMainComponent } from './pages/product-main/product-main.component';
+import { FormsModule } from '@angular/forms';
 
 const productRoutes: Routes = [
   {
@@ -35,6 +36,7 @@ const productRoutes: Routes = [
     SharedModule,
     NgxPaginationModule,
     RouterModule.forChild(productRoutes),
+    FormsModule,
   ],
   exports: [
     ProductDetailsComponent,

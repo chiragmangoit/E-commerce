@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GmapComponent } from './component/gmap/gmap.component';
 import { ContactFormComponent } from './component/contact-form/contact-form.component';
@@ -17,7 +18,8 @@ const routes:Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
   ]
 })
 export class ContactModule { }
