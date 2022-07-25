@@ -18,7 +18,7 @@
                     <img [src]="item.banner" width="268px" />
                     <h2>${{ item.price }}</h2>
                     <p>{{ item.product_name }}</p>
-                    <a href="#" class="btn btn-default add-to-cart"
+                    <a class="btn btn-default add-to-cart" (click)="addToCart(item)"
                       ><i class="fa fa-shopping-cart"></i>Add to cart</a
                     >
                   </div>

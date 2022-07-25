@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
 import { WishListService } from 'src/app/e-commerce/data/services/wish-list.service';
 
@@ -10,29 +11,34 @@ import { WishListService } from 'src/app/e-commerce/data/services/wish-list.serv
   styleUrls: ['./feature-item.component.css'],
 })
 export class FeatureItemComponent implements OnInit, OnDestroy {
-  
   productData: Product['data'];
   subscription: Subscription;
   page: number = 1;
 
-  constructor(private productDataService: ProductsService,
-    private wishList: WishListService) {}
-  
-  addToWishList(data) {
-    this.wishList.addWishListData(data);    
-  }
-
+  constructor(
+    private productDataService: ProductsService,
+    private wishList: WishListService,
+    private cartService:CartService,
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.productDataService
       .getData()
       .subscribe((product) => {
-        this.productData = product.data;       
+        this.productData = product.data;
       });
+      
+  }
+
+  addToWishList(data: Product) {
+    this.wishList.addWishListData(data);
+  }
+
+  addToCart(product: Product) {
+    this.cartService.cart(product);
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe;
   }
-
 }

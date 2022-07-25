@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of product; let i = index">
+      <tr *ngFor="let item of product; let i = index ">
         <td class="cart_product">
           <a><img [src]="item.banner" alt="" /></a>
         </td>
@@ -19,7 +19,7 @@
           <h4>
             <a>{{ item.product_name }}</a>
           </h4>
-          <p>Web ID: {{ item.Web_ID }}}</p>
+          <p>Web ID: {{ item.Web_ID }}</p>
         </td>
         <td class="cart_price">
           <p>${{ item.price }}</p>

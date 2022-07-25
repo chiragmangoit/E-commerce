@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
       this.showTotal = false;
     }
     this.product = this.cartService.getCartProducts();
-    console.log(this.product);
+    
   }
 
   add(product) {

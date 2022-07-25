@@ -17,7 +17,7 @@
             />
             <h2>{{ product.price }}</h2>
             <p>{{ product.product_name }}</p>
-            <a class="btn btn-default add-to-cart"
+            <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
               ><i class="fa fa-shopping-cart"></i>Add to cart</a
             >
           </div>
