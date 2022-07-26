@@ -63,9 +63,12 @@ export class CartComponent implements OnInit, AfterContentChecked {
 
   payout() { 
     if (!this.checkoutDetails) {
-      alert("Please confirm your shipping details")
+      alert("Please enter & confirm your shipping details")
     } else {
       this.checkoutService.onPayout(this.checkoutDetails, this.totalAmount)
     }
+    this.cartService.clearCart();
+    this.totalAmount = 0;
   }
 }
+ 
