@@ -20,6 +20,8 @@
         <hr>
     </div>
     <button class="btn btn-success" (click)="edit()">Edit</button>
+    
+    <button class="btn btn-warning" [routerLink]="['/order-details']" routerLinkActive="router-link-active" >Your orders</button>
 </div>
 
 <div class="edit_form" *ngIf="onEdit">
