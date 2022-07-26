@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
+import { WishListService } from 'src/app/e-commerce/data/services/wish-list.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 
@@ -17,8 +18,12 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
 
   constructor(
     private productDataService: ProductsService,
+    private WishListService: WishListService,
     private cartService: CartService
   ) {}
+
+
+
 
   ngOnInit(): void {
     this.subscription = this.productDataService
@@ -26,6 +31,10 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
       .subscribe((product) => {
         this.productData = product.data;
       });
+  }
+
+  addToWhishlist(product:Product) {
+    this.WishListService.addWishListData(product);
   }
 
   addToCart(data: Product) {
