@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './pages/home/page-not-found/page-not-found.component';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,7 +17,8 @@ import { AccountComponent } from './pages/account/account.component';
 import { FormsModule } from '@angular/forms';
 
 const routes:Routes = [
-  {path: 'account', component:AccountComponent}
+  {path: 'account', component:AccountComponent},
+  {path: 'order-details', component:OrderDetailsComponent }
 ]
 
 @NgModule({
