@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Product } from '../models/product.model';
 
@@ -10,17 +12,25 @@ export class CartService {
   cartValue: number = 0;
 
   cartQuantity = new Subject<number>();
+  emitTotalAmount = new Subject<number>();
 
-  constructor() {}
+  constructor(private http: HttpClient, private route: Router) {}
 
   cart(product: Product) {
-    if (this.cartProducts.includes(product)) {
-      product['quantity']++;
+    if (localStorage.length != 0) {
+      let index = this.cartProducts.findIndex(
+        (item) => item['id'] === product['id']
+      );
+      if (this.cartProducts.find((item) => item['id'] === product['id'])) {
+        this.cartProducts[index]['quantity']++;
+      } else {
+        this.cartProducts.push(product);
+      }
+      this.cartValue++;
+      this.cartQuantity.next(this.cartValue);
     } else {
-      this.cartProducts.push(product);
+      this.route.navigate(['/login']);
     }
-    this.cartValue++;
-    this.cartQuantity.next(this.cartValue);
   }
 
   getCartProducts() {
@@ -28,7 +38,7 @@ export class CartService {
   }
 
   removeCartProduct(index: number, quantity: number) {
-    this.cartProducts.splice(index, 1);    
+    this.cartProducts.splice(index, 1);
     this.cartValue = this.cartValue - quantity;
     this.cartQuantity.next(this.cartValue);
   }

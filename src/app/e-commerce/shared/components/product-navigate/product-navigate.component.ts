@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { map, Subscription } from 'rxjs';
+import { Product } from 'src/app/e-commerce/data/models/product.model';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 import { CategoryService } from 'src/app/e-commerce/data/services/category.service';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
 
@@ -23,7 +25,8 @@ export class ProductNavigateComponent implements OnInit, OnDestroy {
   defaultCategory: number;
   constructor(
     private categoryService: CategoryService,
-    private productDataService: ProductsService
+    private productDataService: ProductsService,
+    private cartService:CartService
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +55,10 @@ export class ProductNavigateComponent implements OnInit, OnDestroy {
       (product) => product.cat_id === id
     );
     this.selectedIndex = index;
+  }
+
+  addToCart( product:Product) {
+    this.cartService.cart(product);
   }
 
   ngOnDestroy(): void {

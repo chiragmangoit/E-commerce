@@ -5,5 +5,13 @@ import { WhishListComponent } from './whish-list.component';
 @NgModule({
   declarations: [WhishListComponent],
   imports: [CommonModule],
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from '../../core/guards/auth-guard.service';
+
+const routes: Routes = [{ path: 'wish-list', component: WhishListComponent,canActivate:[AuthGuardService] }];
+
+@NgModule({
+  declarations: [WhishListComponent],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
 export class WishListModule {}

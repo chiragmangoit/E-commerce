@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 import { RecommendedItemsService } from 'src/app/e-commerce/data/services/recommended-items.service';
 
 @Component({
@@ -13,7 +14,10 @@ export class RecommendedItemsComponent implements OnInit, OnDestroy {
   items: Product['data'];
   subscription: Subscription;
 
-  constructor(private recommendedItemServise: RecommendedItemsService) {}
+  constructor(
+    private recommendedItemServise: RecommendedItemsService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.recommendedItemServise
@@ -47,6 +51,10 @@ export class RecommendedItemsComponent implements OnInit, OnDestroy {
       },
     },
   };
+
+  addToCart(product: Product) {
+    this.cartService.cart(product);
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

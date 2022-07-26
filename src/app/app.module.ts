@@ -14,13 +14,12 @@ import { CartModule } from './e-commerce/features/cart/cart.module';
 import { CheckoutModule } from './e-commerce/features/checkout/checkout.module';
 import { ContactModule } from './e-commerce/features/contact/contact.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WishListModule } from './e-commerce/features/whish-list/wish-list.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './e-commerce/core/interceptors/auth-interceptor.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BlogListComponent,
-    BlogSingleComponent,
-  ],
+  declarations: [AppComponent, BlogListComponent, BlogSingleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,9 +31,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartModule,
     CheckoutModule,
     ContactModule,
+    WishListModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

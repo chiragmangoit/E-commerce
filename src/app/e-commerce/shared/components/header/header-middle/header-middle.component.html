@@ -48,10 +48,12 @@
                 ><i class="fa fa-user"></i> Account</a
               >
             </li>
-            <li>
-              <a><i class="fa fa-star"></i> Wishlist</a>
+            <li >
+              <a routerLink="/wish-list" routerLinkActive="active"
+                ><i class="fa fa-star"></i> Wishlist</a
+              >
             </li>
-            <li>
+            <li >
               <a routerLink="/checkout" routerLinkActive="active"
                 ><i class="fa fa-crosshairs"></i> Checkout</a
               >
@@ -59,7 +61,7 @@
             <li>
               <a routerLink="/cart" routerLinkActive="active"
                 ><i class="fa fa-shopping-cart"></i> Cart
-                <b class="badge">{{cartValue}}</b>
+                <b class="badge">{{ cartValue }}</b>
               </a>
             </li>
             <li>

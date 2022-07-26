@@ -8,12 +8,12 @@ import { RecommendedItemsComponent } from './components/recommended-items/recomm
 import { HeaderTopComponent } from './components/header/header-top/header-top.component';
 import { HeaderBottomComponent } from './components/header/header-bottom/header-bottom.component';
 import { HeaderMiddleComponent } from './components/header/header-middle/header-middle.component';
-import { HeaderRoutingModule } from './header-routing.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductNavigateComponent } from './components/product-navigate/product-navigate.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NouisliderModule } from 'ng2-nouislider';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { NouisliderModule } from 'ng2-nouislider';
   ],
   imports: [
     CommonModule,
-    HeaderRoutingModule,
+    RouterModule,
     CarouselModule,
     BrowserAnimationsModule,
     NouisliderModule,
