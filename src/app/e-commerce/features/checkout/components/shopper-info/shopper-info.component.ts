@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopper-info',
@@ -10,6 +11,10 @@ export class ShopperInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onCheckout(form:NgForm){
+    console.log(form);
   }
 
 }

@@ -12,6 +12,8 @@ export class CartService {
   cartValue: number = 0;
 
   cartQuantity = new Subject<number>();
+  emitTotalAmount = new Subject<number>();
+
   constructor(private http: HttpClient, private route: Router) {}
 
   cart(product: Product) {

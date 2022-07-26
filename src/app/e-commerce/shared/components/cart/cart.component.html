@@ -40,7 +40,17 @@
           </div>
         </td>
         <td class="cart_total">
-          <p class="cart_total_price">${{ item.price * item.quantity }}</p>
+          <p class="cart_total_price">
+            <input
+              class="cart_quantity_input"
+              type="text"
+              name="amount"
+              ngmodel
+              disabled
+              size="4"
+              value="${{ item.price * item.quantity }}"
+            />
+          </p>
         </td>
         <td class="cart_delete">
           <a class="cart_quantity_delete" (click)="removeItem(i, item.quantity)"
@@ -51,10 +61,13 @@
       <tr>
         <td colspan="4">&nbsp;</td>
         <td colspan="2" *ngIf="showTotal">
-          <table class="table table-condensed total-result">
+          <table
+            class="table table-condensed total-result"
+            *ngIf="totalAmount != 0"
+          >
             <tr>
               <td>Cart Sub Total</td>
-              <td>$59</td>
+              <td>${{ totalAmount }}</td>
             </tr>
             <tr>
               <td>Exo Tax</td>
@@ -66,7 +79,20 @@
             </tr>
             <tr>
               <td>Total</td>
-              <td><span>$61</span></td>
+              <td>
+                <span>${{ totalAmount + 2 }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  [disabled]="totalAmount == 0"
+                >
+                  Payout
+                </button>
+              </td>
             </tr>
           </table>
         </td>

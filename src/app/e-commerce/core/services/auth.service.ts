@@ -24,9 +24,7 @@ export class AuthService {
       })
       .pipe(
         catchError(this.handleError),
-        tap((respData) => {
-          
-        })
+        tap((respData) => {})
       );
   }
 
@@ -52,6 +50,23 @@ export class AuthService {
     this.user.next(null);
     this.router.navigate(['/login']);
     localStorage.removeItem('userData');
+  }
+
+  autoLogin() {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+    } = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new LoggedUser(
+      userData.email,
+      userData.id,
+      userData._token,
+    );    
+    this.user.next(loadedUser);
   }
 
   private handleAuth(email: string, userId: string, token: string) {
