@@ -48,3 +48,7 @@
 .ng-valid.ng-touched {
     border-color: lightgreen;
   }
+
+.btn-warning {
+    margin-left: 20px;
+}
