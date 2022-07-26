@@ -12,6 +12,10 @@ export class WhishListComponent implements OnInit {
   
   wishListData;
 
+  deleteProduct(i) {
+    this.wishList.removeProduct(i);
+  }
+
   ngOnInit(): void {
     this.wishListData = this.wishList.getWishListData();
   }
