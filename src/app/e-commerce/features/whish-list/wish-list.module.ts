@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WhishListComponent } from './whish-list.component';
-
-@NgModule({
-  declarations: [WhishListComponent],
-  imports: [CommonModule],
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from '../../core/guards/auth-guard.service';
 
