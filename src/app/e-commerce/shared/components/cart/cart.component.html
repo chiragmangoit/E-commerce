@@ -69,10 +69,6 @@
               <td>Cart Sub Total</td>
               <td>${{ totalAmount }}</td>
             </tr>
-            <tr>
-              <td>Exo Tax</td>
-              <td>$2</td>
-            </tr>
             <tr class="shipping-cost">
               <td>Shipping Cost</td>
               <td>Free</td>
@@ -80,7 +76,7 @@
             <tr>
               <td>Total</td>
               <td>
-                <span>${{ totalAmount + 2 }}</span>
+                <span>${{ totalAmount }}</span>
               </td>
             </tr>
             <tr>
@@ -88,7 +84,7 @@
                 <button
                   type="button"
                   class="btn btn-success"
-                  [disabled]="totalAmount == 0"
+                  (click)="payout()"
                 >
                   Payout
                 </button>
