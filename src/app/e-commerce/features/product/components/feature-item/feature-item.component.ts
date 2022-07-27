@@ -31,7 +31,12 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
   }
 
   addToWishList(data: Product) {
-    this.wishList.addWishListData(data);
+    this.wishList.addWishListData(data).subscribe(
+      a => {
+        console.log(a);
+        
+      }
+    );
   }
 
   addToCart(product: Product) {
