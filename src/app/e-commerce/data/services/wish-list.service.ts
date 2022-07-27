@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class WishListService {
-  constructor(private http: HttpClient) {}
 
   constructor(private http: HttpClient, private route: Router) {}
 
@@ -26,16 +25,16 @@ export class WishListService {
       user_id: userData.userId,
       product_id: data['id']
     });
-    if (localStorage.length != 0) {
-      if (this.wishListServiceData.find((item) => item['id'] === data['id'])) {
-        alert('The product alredy exist in wish list');
-        return;
-      }
-      this.wishListServiceData.push(data);
-      alert('The product is added to wish list');
-    } else {
-      this.route.navigate(['/login']);
-    }
+    // if (localStorage.length != 0) {
+    //   if (this.wishListServiceData.find((item) => item['id'] === data['id'])) {
+    //     alert('The product alredy exist in wish list');
+    //     return;
+    //   }
+    //   this.wishListServiceData.push(data);
+    //   alert('The product is added to wish list');
+    // } else {
+    //   this.route.navigate(['/login']);
+    // }
   }
 
   getWishListData() {

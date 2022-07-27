@@ -28,7 +28,8 @@ const routes:Routes = [
     PageNotFoundComponent,
     PageNotFoundComponent,
     FeaturesItemIndexComponent,
-    AccountComponent
+    AccountComponent,
+    OrderDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -20,6 +20,7 @@ export class HeaderMiddleComponent implements OnInit {
     this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
     });
+    this.cartValue = this.cartService.cartValue;
     this.cartService.cartQuantity.subscribe((value) => {
       this.cartValue = value;
     });

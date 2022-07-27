@@ -4,11 +4,6 @@ import { Subject } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root',
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-
-@Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
@@ -31,15 +26,5 @@ export class CheckoutService {
     return this.http.post<Product>(url, {
       user_id: userData.userId,
     });
-  }
-  constructor() { }
-
-  onCheckout(formData:{}){
-    this.details.next(formData);
-  }
-
-  onPayout(details:{}, checkoutAmount:number) {
-    this.checkoutData.push({details,checkoutAmount});
-    console.log(this.checkoutData);
   }
 }
