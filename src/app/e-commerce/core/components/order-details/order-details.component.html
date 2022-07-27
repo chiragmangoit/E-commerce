@@ -13,19 +13,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr id="order">
+                    <tr id="order" *ngFor="let data of orderListData">
                         <td class="cart_product">
-                            <a href=""><img src="assets/images/cart/one.png" alt=""></a>
+                            <a href=""><img src="{{ data.image }}" alt=""></a>
                         </td>
                         <td class="cart_description">
                             <h4><a href="">Colorblock Scuba</a></h4>
-                            <p>Web ID: 1089772</p>
+                            <p>{{ data.product_name }}</p>
                         </td>
                         <td class="cart_price">
-                            <p>$59</p>
+                            <p>{{ data.price }}</p>
                         </td>
                         <td class="cart_price">
-                            <p>Delivered</p>
+                            <p>{{ data.status }}</p>
                         </td>
                         <td class="cart_price">
                             <p>25/06/2022</p>
