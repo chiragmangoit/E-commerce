@@ -23,8 +23,6 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
   ) {}
 
 
-
-
   ngOnInit(): void {
     this.subscription = this.productDataService
       .getHomeFeatureData()
@@ -39,6 +37,7 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
 
   addToCart(data: Product) {
     this.cartService.cart(data);
+    this.cartService.cartQuantityUpdate();
   }
 
   ngOnDestroy(): void {

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, tap } from 'rxjs';
+import { map, Subject, } from 'rxjs';
 import { Product } from '../models/product.model';
 import { UserDataServiceService } from './user-data-service.service';
 
@@ -10,22 +10,22 @@ import { UserDataServiceService } from './user-data-service.service';
 })
 export class CartService {
   cartProducts: Product[] = [];
-  cartValue: number = this.cartProducts.length;
+  cartValue: number;
 
   cartQuantity = new Subject<number>();
   emitTotalAmount = new Subject<number>();
+  emitCartProducts = new Subject<any>();
 
   userData = this.userDataService.getUserData();
+
   constructor(
     private http: HttpClient,
     private route: Router,
     private userDataService: UserDataServiceService
   ) {}
 
-  cart(product: Product,operation:string = '') {
+  cart(product: Product, operation: string = '') {
     if (localStorage.length != 0) {
-      this.cartValue++;
-      this.cartQuantity.next(this.cartValue);
       return this.http
         .post('http://95.111.202.157/mangoproject/public/api/add-to-card', {
           user_id: this.userData['userId'],
@@ -46,19 +46,30 @@ export class CartService {
         user_id: this.userData['userId'],
       })
       .pipe(
-        tap((cartProduct) => {
+        map((cartProduct) => {
           this.cartProducts = cartProduct['data'];
+          this.cartQuantityUpdate();
+          return cartProduct['data'];
         })
       );
   }
 
   removeCartProduct(id: number) {
-    return this.http.get('http://95.111.202.157/mangoproject/public/api/cart-remove/' + id);
+    return this.http.get(
+      'http://95.111.202.157/mangoproject/public/api/cart-remove/' + id
+    );
   }
 
   clearCart() {
     this.cartProducts.splice(0, this.cartProducts.length);
     this.cartValue = 0;
+    this.cartQuantity.next(this.cartValue);
+  }
+
+  cartQuantityUpdate() {
+    this.cartValue = this.cartProducts
+      .map((cartProduct) => cartProduct['quant'])
+      .reduce((quantity: number, value: number) => +quantity + +value, 0);
     this.cartQuantity.next(this.cartValue);
   }
 }

@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.service';
@@ -21,6 +21,7 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   totalAmount: number = 0;
   checkoutDetails: {};
   cartSubscription: Subscription;
+  product$: Observable<any>;
 
   constructor(
     private router: Router,
@@ -32,15 +33,14 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
     if (this.router.url === '/cart') {
       this.showTotal = false;
     }
-    this.cartSubscription = this.cartService
-      .getCartProducts()
-      .subscribe((cartProduct) => {
-        this.product = cartProduct['data'];
-        console.log(this.product);
-        
-      });
+    this.product$ = this.cartService.getCartProducts();
+
+    this.cartService.emitCartProducts.subscribe(
+      data => this.product$ = data
+    )
+    
     this.checkoutService.details.subscribe((details) => {
-      this.checkoutDetails = details;
+      return details;
     });
   }
 
@@ -55,17 +55,20 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
 
   add(product) {
     this.cartService.cart(product);
+    this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
 
   substract(product, remove) {
-    this.cartService.cart(product, remove);
-    if (product.quantity >= 2) {
+    if (product.quant >= 2) {
+      this.cartService.cart(product, remove);
     }
-    this.cartService.cartQuantity.next(this.cartService.cartValue);
+    this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
+
   }
 
   removeItem(id: number) {
     this.cartService.removeCartProduct(id).subscribe();
+    this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
 
   payout() {
@@ -79,6 +82,6 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.cartSubscription.unsubscribe();
+    // this.cartSubscription.unsubscribe();
   }
 }
