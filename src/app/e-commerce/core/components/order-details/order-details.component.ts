@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.service';
 
 @Component({
   selector: 'app-order-details',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private CheckoutService:CheckoutService) { }
+  
+  subscription;
+
+  orderListData;
 
   ngOnInit(): void {
+    this.subscription = this.CheckoutService.oderList().subscribe((data) => {
+      console.log(data);
+    });
   }
 
 }

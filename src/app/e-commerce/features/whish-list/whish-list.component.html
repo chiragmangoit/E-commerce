@@ -1,7 +1,7 @@
 <h2 class="title text-center">Wish list</h2>
 <div class="container">
   <div class="row">
-    <div class="col-sm-3" *ngFor="let data of wishListData; index as i">
+    <div class="col-sm-3" *ngFor="let data of wishListData; let i = index">
       <div class="product-image-wrapper">
         <div class="single-products">
           <div class="productinfo text-center">
@@ -11,7 +11,7 @@
             <a class="btn btn-default add-to-cart"
               ><i class="fa fa-shopping-cart"></i>Add to cart</a
             >
-            <a class="btn btn-default add-to-cart" (click)="deleteProduct(i)"
+            <a class="btn btn-default add-to-cart" (click)="deleteProduct(data.id)"
               ><i class=""></i>Remove</a
             >
           </div>
