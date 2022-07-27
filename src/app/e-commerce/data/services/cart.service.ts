@@ -42,4 +42,10 @@ export class CartService {
     this.cartValue = this.cartValue - quantity;
     this.cartQuantity.next(this.cartValue);
   }
+
+  clearCart() {
+    this.cartProducts.splice(0, this.cartProducts.length)
+    this.cartValue = 0;
+    this.cartQuantity.next(this.cartValue);
+  }
 }

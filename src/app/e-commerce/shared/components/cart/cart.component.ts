@@ -1,7 +1,8 @@
-import { AfterContentChecked , Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
+import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,24 +13,33 @@ export class CartComponent implements OnInit, AfterContentChecked {
   showTotal: boolean = true;
   product: Product[] = [];
   totalAmount: number = 0;
+  checkoutDetails:{};
 
-  constructor(private router: Router, private cartService: CartService) {}
- 
+  constructor(
+    private router: Router,
+    private cartService: CartService,
+    private checkoutService: CheckoutService
+  ) {}
 
   ngOnInit(): void {
     if (this.router.url === '/cart') {
       this.showTotal = false;
     }
     this.product = this.cartService.getCartProducts();
+
+    this.checkoutService.details.subscribe(
+      details => {
+        this.checkoutDetails = details;
+      }
+    )
   }
 
   ngAfterContentChecked(): void {
     if (this.product.length != 0) {
       this.totalAmount = this.product
-      .map((cartProduct) => cartProduct['price'] * cartProduct['quantity'])
-      .reduce((amount, value) => amount + value
-      , 0);
-    this.cartService.emitTotalAmount.next(this.totalAmount); 
+        .map((cartProduct) => cartProduct['price'] * cartProduct['quantity'])
+        .reduce((amount, value) => amount + value, 0);
+      this.cartService.emitTotalAmount.next(this.totalAmount);
     }
   }
 
@@ -50,4 +60,15 @@ export class CartComponent implements OnInit, AfterContentChecked {
   removeItem(index: number, quantity: number) {
     this.cartService.removeCartProduct(index, quantity);
   }
+
+  payout() { 
+    if (!this.checkoutDetails) {
+      alert("Please enter & confirm your shipping details")
+    } else {
+      this.checkoutService.onPayout(this.checkoutDetails, this.totalAmount)
+    }
+    this.cartService.clearCart();
+    this.totalAmount = 0;
+  }
 }
+ 

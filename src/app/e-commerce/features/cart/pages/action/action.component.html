@@ -2,7 +2,7 @@
   <div class="container">
     <div class="breadcrumbs">
       <ol class="breadcrumb">
-        <li><a href="#">Home</a></li>
+        <li><a routerLink="">Home</a></li>
         <li class="active">Shopping Cart</li>
       </ol>
     </div>
@@ -25,10 +25,9 @@
             <li>
               Cart Sub Total <span>${{ totalAmount }}</span>
             </li>
-            <li>Eco Tax <span>$2</span></li>
             <li>Shipping Cost <span>Free</span></li>
             <li>
-              Total <span>${{ totalAmount + 2 }}</span>
+              Total <span>${{ totalAmount }}</span>
             </li>
           </ul>
           <a class="btn btn-default check_out" routerLink="/checkout">Check Out</a>

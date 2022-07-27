@@ -35,5 +35,6 @@ export class LoginRegisterComponent implements OnInit {
         console.log(errorMessage);
       }
     );
+    this.signUpForm.reset();
   }
 }
