@@ -28,7 +28,7 @@ export class CartService {
 
   cart(product: Product, operation: string = '') {
     if (this.userData) {
-      return this.http
+      this.http
         .post('http://95.111.202.157/mangoproject/public/api/add-to-card', {
           user_id: this.userData['userId'],
           product_id: product['id'],
@@ -64,7 +64,8 @@ export class CartService {
   }
 
   cartQuantityUpdate(cartProducts) {
-    this.cartValue = cartProducts.map((cartProduct) => cartProduct['quant'])
+    this.cartValue = cartProducts
+      .map((cartProduct) => cartProduct['quant'])
       .reduce((quantity: number, value: number) => +quantity + +value, 0);
     this.cartQuantity.next(this.cartValue);
   }

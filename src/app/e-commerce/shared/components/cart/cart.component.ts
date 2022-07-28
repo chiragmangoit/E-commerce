@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.service';
@@ -21,7 +21,6 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   totalAmount: number = 0;
   checkoutDetails: {};
   cartSubscription: Subscription;
-  product$: Observable<any>;
 
   constructor(
     private router: Router,
@@ -47,7 +46,7 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
     });
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterContentChecked(): void {    
     if (this.product.length != 0) {
       this.totalAmount = this.product
         .map((cartProduct) => cartProduct['price'] * cartProduct['quant'])
