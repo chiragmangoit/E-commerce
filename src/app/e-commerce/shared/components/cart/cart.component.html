@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of product$ |async; let i = index">
+      <tr *ngFor="let item of product ; let i = index">
         <td class="cart_product">
           <a><img [src]="item.banner" alt="" /></a>
         </td>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
+import { LoggedUser } from 'src/app/e-commerce/data/models/login.model';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 
@@ -13,7 +13,6 @@ export class HeaderMiddleComponent implements OnInit {
   isAuthenticated: boolean = false;
   cartValue: number;
   product: Product[] = [];
-  cartSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -25,22 +24,23 @@ export class HeaderMiddleComponent implements OnInit {
       this.isAuthenticated = !!user;
     });
 
-    if (localStorage.length != 0) {
-      this.cartSubscription = this.cartService
-        .getCartProducts()
-        .subscribe((cartProduct) => {
-          this.product = cartProduct;
-        });
+    if (this.isAuthenticated) {
+      this.cartService.getCartProducts().subscribe((cartProduct) => {
+        this.product = cartProduct;
+      });
+
+      this.cartService.emitCartProducts.subscribe((data) => {
+        data.subscribe((product) => (this.product = product));
+      });
     }
-    this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
+  
     this.cartService.cartQuantity.subscribe((cartvalue) => {
       this.cartValue = cartvalue;
     });
   }
 
-
-
   onLogout() {
     this.authService.logOut();
+    this.cartValue = null;
   }
 }

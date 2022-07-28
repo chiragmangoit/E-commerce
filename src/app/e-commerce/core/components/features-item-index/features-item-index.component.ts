@@ -22,7 +22,6 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
     private cartService: CartService
   ) {}
 
-
   ngOnInit(): void {
     this.subscription = this.productDataService
       .getHomeFeatureData()
@@ -31,13 +30,13 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
       });
   }
 
-  addToWhishlist(product:Product) {
+  addToWhishlist(product: Product) {
     this.WishListService.addWishListData(product);
   }
 
   addToCart(data: Product) {
     this.cartService.cart(data);
-    this.cartService.cartQuantityUpdate();
+    this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
 
   ngOnDestroy(): void {

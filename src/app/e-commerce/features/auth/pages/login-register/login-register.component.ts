@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
+import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 
 @Component({
   selector: 'app-login-register',
@@ -11,19 +12,25 @@ import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
 export class LoginRegisterComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
   @ViewChild('signUpForm') signUpForm: NgForm;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {}
 
   onLogin() {
     this.authService.signIn(this.loginForm.value).subscribe(
       (response) => {
+        this.cartService.getCartProducts().subscribe();
         this.router.navigate(['']);
       },
       (errorMessage) => {
         alert(errorMessage);
       }
     );
+    this.loginForm.reset();
   }
 
   onSignUp() {

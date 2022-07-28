@@ -33,14 +33,17 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
     if (this.router.url === '/cart') {
       this.showTotal = false;
     }
-    this.product$ = this.cartService.getCartProducts();
 
-    this.cartService.emitCartProducts.subscribe(
-      data => this.product$ = data
-    )
-    
+    this.cartSubscription = this.cartService
+      .getCartProducts()
+      .subscribe((data) => (this.product = data));
+
+    this.cartService.emitCartProducts.subscribe((data) => {
+      data.subscribe((product) => (this.product = product));
+    });
+
     this.checkoutService.details.subscribe((details) => {
-      return details;
+      this.checkoutDetails = details;
     });
   }
 
@@ -63,7 +66,6 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.cartService.cart(product, remove);
     }
     this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
-
   }
 
   removeItem(id: number) {
@@ -77,11 +79,9 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
     } else {
       this.checkoutService.onPayout(this.checkoutDetails, this.totalAmount);
     }
-    this.cartService.clearCart();
-    this.totalAmount = 0;
   }
 
   ngOnDestroy(): void {
-    // this.cartSubscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
   }
 }
