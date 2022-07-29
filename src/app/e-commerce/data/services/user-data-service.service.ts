@@ -5,8 +5,10 @@ import { LoggedUser } from '../models/login.model';
   providedIn: 'root',
 })
 export class UserDataServiceService {
-  constructor() {}
-  userData:LoggedUser = JSON.parse(localStorage.getItem('userData'));
+  userData:LoggedUser;
+  constructor() {
+    this.userData = JSON.parse(localStorage.getItem('userData'));
+  }
 
   getUserData() {
     return this.userData;

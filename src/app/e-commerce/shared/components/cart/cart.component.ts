@@ -5,7 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import {  Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/e-commerce/core/services/auth.service';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { CartService } from 'src/app/e-commerce/data/services/cart.service';
 import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.service';
@@ -20,12 +21,13 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   product: Product[] = [];
   totalAmount: number = 0;
   checkoutDetails: {};
-  cartSubscription: Subscription;
+  Subscription: Subscription = new Subscription();
 
   constructor(
     private router: Router,
     private cartService: CartService,
-    private checkoutService: CheckoutService
+    private checkoutService: CheckoutService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -33,28 +35,37 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
       this.showTotal = false;
     }
 
-    this.cartSubscription = this.cartService
-      .getCartProducts()
-      .subscribe((data) => (this.product = data));
+    this.Subscription.add(
+      this.cartService
+        .getCartProducts()
+        .subscribe((data) => (this.product = data))
+    );
 
-    this.cartService.emitCartProducts.subscribe((data) => {
-      data.subscribe((product) => (this.product = product));
-    });
+    this.Subscription.add(
+      this.cartService.emitCartProducts.subscribe((data) => {
+        data.subscribe((product) => (this.product = product));
+      })
+    );
 
-    this.checkoutService.details.subscribe((details) => {
-      this.checkoutDetails = details;
-    });
+    this.Subscription.add(
+      this.checkoutService.details.subscribe((details) => {
+        this.checkoutDetails = details;
+      })
+    );
   }
 
-  ngAfterContentChecked(): void {    
+  ngAfterContentChecked(): void {
+    
     if (this.product.length != 0) {
       this.totalAmount = this.product
         .map((cartProduct) => cartProduct['price'] * cartProduct['quant'])
         .reduce((amount, value) => amount + value, 0);
       this.cartService.emitTotalAmount.next(this.totalAmount);
+    } else {
+      this.cartService.emitTotalAmount.next(0);
     }
   }
-
+ 
   add(product) {
     this.cartService.cart(product);
     this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
@@ -76,11 +87,15 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
     if (!this.checkoutDetails) {
       alert('Please enter & confirm your shipping details');
     } else {
-      this.checkoutService.onPayout(this.checkoutDetails, this.totalAmount);
+      this.Subscription.add(
+        this.checkoutService
+          .onPayout(this.product, this.totalAmount)
+          .subscribe((data) => console.log(data))
+      );
     }
   }
 
   ngOnDestroy(): void {
-    this.cartSubscription.unsubscribe();
+    this.Subscription.unsubscribe();
   }
 }

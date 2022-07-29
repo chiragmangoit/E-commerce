@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/e-commerce/data/models/product.model';
 import { ProductsService } from 'src/app/e-commerce/data/services/products.service';
 import { WishListService } from 'src/app/e-commerce/data/services/wish-list.service';
@@ -36,7 +35,6 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
 
   addToCart(data: Product) {
     this.cartService.cart(data);
-    this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
 
   ngOnDestroy(): void {

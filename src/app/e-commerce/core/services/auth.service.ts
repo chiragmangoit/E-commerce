@@ -36,7 +36,7 @@ export class AuthService {
       })
       .pipe(
         catchError(this.handleError),
-        tap((respData: RespData) => {
+        tap((respData: RespData) => {          
           this.handleAuth(
             respData.data.email,
             respData.data.id,
@@ -48,8 +48,8 @@ export class AuthService {
 
   logOut() {
     this.user.next(null);
-    this.router.navigate(['/login']);
     localStorage.removeItem('userData');
+    this.router.navigate(['/login']);
   }
 
   autoLogin() {

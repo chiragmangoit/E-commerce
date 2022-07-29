@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { map, retry, Subject } from 'rxjs';
 import { LoggedUser } from '../models/login.model';
 import { Product } from '../models/product.model';
-import { UserDataServiceService } from './user-data-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,15 +17,10 @@ export class CartService {
   emitTotalAmount = new Subject<number>();
   emitCartProducts = new Subject<any>();
 
-  constructor(
-    private http: HttpClient,
-    private route: Router,
-    private userDataService: UserDataServiceService
-  ) {
-    this.userData = this.userDataService.getUserData();
-  }
+  constructor(private http: HttpClient, private route: Router) {}
 
   cart(product: Product, operation: string = '') {
+    this.userData = JSON.parse(localStorage.getItem('userData'));
     if (this.userData) {
       this.http
         .post('http://95.111.202.157/mangoproject/public/api/add-to-card', {
@@ -37,12 +31,14 @@ export class CartService {
           quant_minus: operation,
         })
         .subscribe();
+      this.emitCartProducts.next(this.getCartProducts());
     } else {
       this.route.navigate(['/login']);
     }
   }
 
   getCartProducts() {
+    this.userData = JSON.parse(localStorage.getItem('userData'));
     return this.http
       .post('http://95.111.202.157/mangoproject/public/api/card-display', {
         user_id: this.userData['userId'],

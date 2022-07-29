@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Params } from '@angular/router';
@@ -11,7 +11,7 @@ import { CartService } from 'src/app/e-commerce/data/services/cart.service';
   templateUrl: './single-product-detail.component.html',
   styleUrls: ['./single-product-detail.component.css'],
 })
-export class SingleProductDetailComponent implements OnInit {
+export class SingleProductDetailComponent implements OnInit, OnDestroy {
   
   productId: number;
   
@@ -38,6 +38,10 @@ export class SingleProductDetailComponent implements OnInit {
 
   addtoCart(product:Product) {
     this.cartService.cart(product);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
   
 }

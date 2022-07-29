@@ -22,9 +22,9 @@ export class LoginRegisterComponent implements OnInit {
 
   onLogin() {
     this.authService.signIn(this.loginForm.value).subscribe(
-      (response) => {
-        this.cartService.getCartProducts().subscribe();
+      (response) => {        
         this.router.navigate(['']);
+        this.cartService.getCartProducts().subscribe();
       },
       (errorMessage) => {
         alert(errorMessage);
@@ -39,7 +39,7 @@ export class LoginRegisterComponent implements OnInit {
         alert('Registered Successfully,Please Login to Continue');
       },
       (errorMessage) => {
-        console.log(errorMessage);
+       alert(errorMessage);
       }
     );
     this.signUpForm.reset();

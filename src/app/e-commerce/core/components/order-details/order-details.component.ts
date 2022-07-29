@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.service';
 
 @Component({
@@ -6,18 +7,23 @@ import { CheckoutService } from 'src/app/e-commerce/data/services/checkout.servi
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.css']
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
+  subscription:Subscription;
+  orderListData;
 
   constructor(private CheckoutService:CheckoutService) { }
   
-  subscription;
-
-  orderListData;
 
   ngOnInit(): void {
     this.subscription = this.CheckoutService.oderList().subscribe((data) => {
       console.log(data);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
 }

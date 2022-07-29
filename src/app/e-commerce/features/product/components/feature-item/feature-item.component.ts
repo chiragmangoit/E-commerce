@@ -12,30 +12,26 @@ import { WishListService } from 'src/app/e-commerce/data/services/wish-list.serv
 })
 export class FeatureItemComponent implements OnInit, OnDestroy {
   productData: Product['data'];
-  subscription: Subscription;
+  subscription: Subscription = new Subscription;
   page: number = 1;
 
   constructor(
     private productDataService: ProductsService,
     private wishList: WishListService,
-    private cartService:CartService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.productDataService
+    this.subscription.add(this.productDataService
       .getData()
       .subscribe((product) => {
         this.productData = product.data;
-      });
-      
+      }));
   }
 
   addToWishList(data: Product) {
-    this.wishList.addWishListData(data).subscribe(
-      a => {
-        console.log(a);
-        
-      }
+    this.subscription.add(
+      this.wishList.addWishListData(data).subscribe()
     );
   }
 
