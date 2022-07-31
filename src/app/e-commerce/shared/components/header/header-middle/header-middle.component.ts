@@ -24,17 +24,13 @@ export class HeaderMiddleComponent implements OnInit {
     });
 
     if (this.isAuthenticated) {
-      this.cartService
-        .getCartProducts()
-        .subscribe((cartProduct) => {
-          this.product = cartProduct;
-        });
-
-      this.cartService.emitCartProducts.subscribe((data) => {
-        data.subscribe((product) => (this.product = product));
+      this.cartService.getCartProducts().subscribe((cartProduct) => {
+        this.product = cartProduct;
       });
     }
-
+    this.cartService.emitCartProducts.subscribe((data) => {
+      data.subscribe((product) => (this.product = product));
+    });
     this.cartService.cartQuantity.subscribe((cartvalue) => {
       this.cartValue = cartvalue;
     });
@@ -44,6 +40,4 @@ export class HeaderMiddleComponent implements OnInit {
     this.authService.logOut();
     this.cartValue = null;
   }
-
-
 }

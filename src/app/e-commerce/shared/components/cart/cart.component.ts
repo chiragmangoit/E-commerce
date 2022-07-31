@@ -67,13 +67,14 @@ export class CartComponent implements OnInit, AfterContentChecked, OnDestroy {
   }
  
   add(product) {
-    this.cartService.cart(product);
+    this.Subscription.add(this.cartService.cart(product));
     this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
 
   substract(product, remove) {
     if (product.quant >= 2) {
-      this.cartService.cart(product, remove);
+      this.Subscription.add(
+      this.cartService.cart(product, remove));
     }
     this.cartService.emitCartProducts.next(this.cartService.getCartProducts());
   }
