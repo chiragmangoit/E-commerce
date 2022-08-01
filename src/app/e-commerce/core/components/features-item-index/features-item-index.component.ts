@@ -30,7 +30,7 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
   }
 
   addToWhishlist(product: Product) {
-    this.WishListService.addWishListData(product);
+    this.WishListService.addWishListData(product).subscribe();
   }
 
   addToCart(data: Product) {
