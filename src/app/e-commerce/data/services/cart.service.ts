@@ -30,8 +30,14 @@ export class CartService {
           quant: 1,
           quant_minus: operation,
         })
-        .subscribe();
-      this.emitCartProducts.next(this.getCartProducts());
+        .subscribe((res) => {
+          this.emitCartProducts.next(this.getCartProducts());
+          if (operation != '') {
+            alert('successfully removed');
+          } else {
+            alert('successfully added');
+          }
+        });
     } else {
       this.route.navigate(['/login']);
     }
