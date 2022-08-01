@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { WishListService } from '../../data/services/wish-list.service';
 
@@ -7,28 +7,31 @@ import { WishListService } from '../../data/services/wish-list.service';
   templateUrl: './whish-list.component.html',
   styleUrls: ['./whish-list.component.css'],
 })
-export class WhishListComponent implements OnInit {
+export class WhishListComponent implements OnInit, OnDestroy {
   constructor(private wishList: WishListService) {}
 
-  wishListData;
+  wishListData:any = [];
 
-  subscription;
+  subscription: Subscription;
 
   deleteProduct(id) {
-    this.wishList.removeProduct(id).subscribe((a) => {
-      console.log(a);
-    });
+    this.wishList.removeProduct(id).subscribe();
+    this.wishList.wishListEmit.next(this.wishList.getWishListData());
   }
 
   ngOnInit(): void {
     this.subscription = this.wishList.getWishListData().subscribe((data) => {
       this.wishListData = data.data;
     });
+    this.wishList.wishListEmit.subscribe((data) => {
+      data.subscribe(wishListProduct => {
+        this.wishListData = wishListProduct.data;
+
+      })      
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
-
-// this.productDataService
-//       .getData()
-//       .subscribe((product) => {
-//         this.productData = product.data;
-//       });
