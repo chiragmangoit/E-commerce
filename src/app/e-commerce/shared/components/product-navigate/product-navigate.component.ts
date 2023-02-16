@@ -38,22 +38,22 @@ export class ProductNavigateComponent implements OnInit, OnDestroy {
       });
 
     this.productSubscription = this.productDataService
-      .getData()
+      .getData(2)
       .pipe(
         map((data) => {
-          return data.data;
+          return data['result']['data']['rows'];
         })
       )
       .subscribe((productData) => {
         this.productsData = productData;
-        this.showProducts(this.defaultCategory, 0);
+        this.showProducts(productData[0].categories[0].id, 0);
       });
   }
 
   showProducts(id: number, index: number) {
     this.products = this.productsData.filter(
-      (product) => product.cat_id === id
-    );
+      (product) => product.categories[0].id === id
+    );    
     this.selectedIndex = index;
   }
 

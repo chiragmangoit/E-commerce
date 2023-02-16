@@ -11,7 +11,7 @@ import { CartService } from 'src/app/e-commerce/data/services/cart.service';
   styleUrls: ['./features-item-index.component.css'],
 })
 export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
-  productData: Product['data'];
+  productData: any;
 
   subscription: Subscription;
 
@@ -25,7 +25,7 @@ export class FeaturesItemIndexComponent implements OnInit, OnDestroy {
     this.subscription = this.productDataService
       .getHomeFeatureData()
       .subscribe((product) => {
-        this.productData = product.data;
+        this.productData = product['result']['productData'];
       });
   }
 

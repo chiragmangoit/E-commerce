@@ -3,6 +3,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { Banner } from 'src/app/e-commerce/data/models/banner.model';
 import { BannerService } from 'src/app/e-commerce/data/services/banner.service';
+import { baseUrl } from 'src/environments/environment';
 
 @Component({
   selector: 'app-slider',
@@ -10,15 +11,16 @@ import { BannerService } from 'src/app/e-commerce/data/services/banner.service';
   styleUrls: ['./slider.component.css']
 })
 export class SliderComponent implements OnInit, OnDestroy {
-  banner:Banner["data"];
+  banner:any;
   subscription: Subscription;
+  urlInitial:string = baseUrl.substring(0,baseUrl.indexOf('/api'));
 
   constructor( private bannerService:BannerService ) { }
 
   ngOnInit(): void {
     this.subscription = this.bannerService.getBanner().subscribe(
       bannerData => {
-        this.banner = bannerData.data; 
+        this.banner = bannerData['result'].data; 
       }
     )
   }

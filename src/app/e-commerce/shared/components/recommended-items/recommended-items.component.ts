@@ -11,7 +11,7 @@ import { RecommendedItemsService } from 'src/app/e-commerce/data/services/recomm
   styleUrls: ['./recommended-items.component.css'],
 })
 export class RecommendedItemsComponent implements OnInit, OnDestroy {
-  items: Product['data'];
+  items: any;
   subscription: Subscription;
 
   constructor(
@@ -23,7 +23,7 @@ export class RecommendedItemsComponent implements OnInit, OnDestroy {
     this.subscription = this.recommendedItemServise
       .getItems()
       .subscribe((itemData) => {
-        this.items = itemData.data;
+        this.items = itemData['result']['productData'];
       });
   }
 
@@ -35,7 +35,7 @@ export class RecommendedItemsComponent implements OnInit, OnDestroy {
     dots: true,
     navSpeed: 600,
     navText: ['&#8249', '&#8250;'],
-    nav: true,
+    // nav: true,
     responsive: {
       0: {
         items: 1,

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { baseUrl } from 'src/environments/environment';
 import { Product } from '../models/product.model';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class RecommendedItemsService {
 
   getItems() {
     return this.http.get<Product>(
-      'http://95.111.202.157/mangoproject/public/api/recommended-filter-product'
+      `${baseUrl}` + 'user-product/latest-product?option=mostView'
     );
   }
 }

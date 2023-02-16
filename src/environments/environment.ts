@@ -6,6 +6,11 @@ export const environment = {
   production: false
 };
 
+// export const baseUrl = 'http://localhost:5002/api/';
+export const baseUrl = 'http://103.127.29.85:3006/api/';
+// export const baseUrl = 'https://cms-node-heroku.herokuapp.com/api/';
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

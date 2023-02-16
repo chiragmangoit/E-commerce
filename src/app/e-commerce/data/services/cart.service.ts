@@ -23,7 +23,7 @@ export class CartService {
     this.userData = JSON.parse(localStorage.getItem('userData'));
     if (this.userData) {
       this.http
-        .post('http://95.111.202.157/mangoproject/public/api/add-to-card', {
+        .post('mangoproject/public/api/add-to-card', {
           user_id: this.userData['userId'],
           product_id: product['id'],
           web_id: product['Web_ID'],
@@ -46,7 +46,7 @@ export class CartService {
   getCartProducts() {
     this.userData = JSON.parse(localStorage.getItem('userData'));
     return this.http
-      .post('http://95.111.202.157/mangoproject/public/api/card-display', {
+      .post('mangoproject/public/api/card-display', {
         user_id: this.userData['userId'],
       })
       .pipe(
@@ -61,7 +61,7 @@ export class CartService {
 
   removeCartProduct(id: number) {
     return this.http.get(
-      'http://95.111.202.157/mangoproject/public/api/cart-remove/' + id
+      'mangoproject/public/api/cart-remove/' + id
     );
   }
 

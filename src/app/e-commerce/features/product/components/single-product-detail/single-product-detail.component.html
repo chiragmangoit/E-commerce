@@ -4,9 +4,9 @@
     <div class="view-product">
       <a
         data-fancybox="gallery"
-        href="{{ productDetails.banner }}"
+        href="https://ckstudio.in/wp-content/uploads/2018/02/ecommerce-photography-services-640x500-1.jpg"
       >
-        <img src="{{ productDetails.banner }}" />
+        <img src="https://ckstudio.in/wp-content/uploads/2018/02/ecommerce-photography-services-640x500-1.jpg" />
       </a>
     </div>
     <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -88,14 +88,14 @@
         class="newarrival"
         alt=""
       />
-      <h2>{{ productDetails.product_name }}</h2>
-      <p>Web ID: {{ productDetails.Web_ID }}</p>
+      <h2>{{ productDetails.ProductFlat.name }}</h2>
+      <p>Web ID: {{ productDetails.id }}</p>
       <img
         src="../../../../../../assets/images/product-details/rating.png"
         alt=""
       />
       <span>
-        <span>US $ {{ productDetails.price }}</span>
+        <span>US $ {{ productDetails.ProductFlat.price }}</span>
         <label>Quantity:</label>
         <input type="text" disabled value="1" />
         <button type="button" class="btn btn-fefault cart" (click)="addtoCart(productDetails)">
@@ -103,9 +103,9 @@
           Add to cart
         </button>
       </span>
-      <p><b>Availability:</b>{{ productDetails.Availability }}</p>
-      <p><b>Condition:</b>{{ productDetails.Condition }}</p>
-      <p><b>Brand:</b>{{ productDetails.Brand }}</p>
+      <p><b>Type:</b>{{ productDetails.type }}</p>
+      <p><b>SKU:</b>{{ productDetails.sku }}</p>
+      <p><b>Brand:</b>{{ productDetails.ProductFlat.metaTitle }}</p>
       <a href=""
         ><img
           src="../../../../../../assets/images/product-details/share.png"

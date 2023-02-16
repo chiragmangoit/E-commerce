@@ -2,16 +2,18 @@
   <h2>Category</h2>
   <div class="panel-group category-products" id="accordian">
     <!--category-productsr-->
-    <div class="panel panel-default">
+    <div class="panel panel-default" *ngFor="let category of categoryData; let i = index">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-            Sportswear
-          </a>
+          <li>
+            <a data-toggle="collapse" data-parent="#accordian" [class]="selectedIndex == i ? 'active' : ''" (click)="showProducts(category.id,i)"  href="#{{category.categoryTranslations[0].slug}}">
+              <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+              {{category.categoryTranslations[0].name}}
+            </a>
+          </li>
         </h4>
       </div>
-      <div id="sportswear" class="panel-collapse collapse">
+      <div id="{{category.categoryTranslations[0].slug}}" class="panel-collapse collapse">
         <div class="panel-body">
           <ul>
             <li><a>Nike </a></li>
@@ -21,89 +23,6 @@
             <li><a>ASICS </a></li>
           </ul>
         </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-            Mens
-          </a>
-        </h4>
-      </div>
-      <div id="mens" class="panel-collapse collapse">
-        <div class="panel-body">
-          <ul>
-            <li><a>Fendi</a></li>
-            <li><a>Guess</a></li>
-            <li><a>Valentino</a></li>
-            <li><a>Dior</a></li>
-            <li><a>Versace</a></li>
-            <li><a>Armani</a></li>
-            <li><a>Prada</a></li>
-            <li><a>Dolce and Gabbana</a></li>
-            <li><a>Chanel</a></li>
-            <li><a>Gucci</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-            Womens
-          </a>
-        </h4>
-      </div>
-      <div id="womens" class="panel-collapse collapse">
-        <div class="panel-body">
-          <ul>
-            <li><a>Fendi</a></li>
-            <li><a>Guess</a></li>
-            <li><a>Valentino</a></li>
-            <li><a>Dior</a></li>
-            <li><a>Versace</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Kids</a></h4>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Fashion</a></h4>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Households</a></h4>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Interiors</a></h4>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Clothing</a></h4>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Bags</a></h4>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title"><a>Shoes</a></h4>
       </div>
     </div>
   </div>
@@ -161,10 +80,5 @@
   </div>
 
   <!--/price-range-->
-
-  <div class="shipping text-center">
-    <!--shipping-->
-    <img src="../../../../../assets/images/home/shipping.jpg" alt="" />
-  </div>
   <!--/shipping-->
 </div>

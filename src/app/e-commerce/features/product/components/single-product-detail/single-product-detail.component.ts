@@ -15,7 +15,7 @@ export class SingleProductDetailComponent implements OnInit, OnDestroy {
   
   productId: number;
   
-  productDetails:Product['data'];
+  productDetails:any;
 
   subscription:Subscription;
 
@@ -32,7 +32,7 @@ export class SingleProductDetailComponent implements OnInit, OnDestroy {
     this.subscription = this.productsService.getProductDetails(
       this.productId
     ).subscribe((product) => {
-      this.productDetails = product.data;
+      this.productDetails = product['result']['productData'];
     });
   }
 

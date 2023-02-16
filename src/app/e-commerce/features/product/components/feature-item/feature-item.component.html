@@ -1,22 +1,17 @@
-<h2 class="title text-center">Features Items</h2>
+<h2 class="title text-center">All Products</h2>
 <div class="row">
-  <div
-    *ngFor="
-      let product of productData
-        | paginate: { itemsPerPage: 12, currentPage: page }
-    "
-  >
+  <div *ngFor="let product of productData">
     <div class="col-sm-4">
       <div class="product-image-wrapper">
         <div class="single-products">
           <div class="productinfo text-center">
             <img
-              src="{{ product.banner }}"
+              src="https://img.freepik.com/free-psd/summer-sale-70-discount_23-2148476960.jpg"
               alt=""
               routerLink="./{{ product.id }}"
             />
-            <h2 >${{ product.price }}</h2>
-            <p>{{ product.product_name }}</p>
+            <h2>${{ product.ProductFlat.price }}</h2>
+            <p>{{ product.ProductFlat.name }}</p>
             <a class="btn btn-default add-to-cart" (click)="addToCart(product)"
               ><i class="fa fa-shopping-cart"></i>Add to cart</a
             >
@@ -35,4 +30,18 @@
     </div>
   </div>
 </div>
-<pagination-controls (pageChange)="page = $event"></pagination-controls>
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" tabindex="-1" (click)="prevPage()">Previous</a>
+    </li>
+    <li class="page-item disabled" >
+      <a
+        >Page {{ page }} Of {{totalPages}}</a
+      >
+    </li>
+    <li class="page-item">
+      <a class="page-link"  (click)="nextPage()" >Next</a>
+    </li>
+  </ul>
+</nav>

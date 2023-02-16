@@ -11,9 +11,10 @@ import { WishListService } from 'src/app/e-commerce/data/services/wish-list.serv
   styleUrls: ['./feature-item.component.css'],
 })
 export class FeatureItemComponent implements OnInit, OnDestroy {
-  productData: Product['data'];
-  subscription: Subscription = new Subscription;
+  productData: any;
+  subscription: Subscription = new Subscription();
   page: number = 1;
+  totalPages:number;
 
   constructor(
     private productDataService: ProductsService,
@@ -22,21 +23,44 @@ export class FeatureItemComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription.add(this.productDataService
-      .getData()
-      .subscribe((product) => {
-        this.productData = product.data;
-      }));
+    this.subscription.add(
+      this.productDataService.getData(this.page).subscribe((product) => {
+        this.productData = product['result']['data']['rows'];
+        this.totalPages = Math.ceil(product['result']['data']['count']/10);
+      })
+    );
+  }
+
+  getProductData() {
+    this.productDataService.getData(this.page).subscribe((product) => {
+      this.productData = product['result']['data']['rows'];
+    })
   }
 
   addToWishList(data: Product) {
-    this.subscription.add(
-      this.wishList.addWishListData(data).subscribe()
-    );
+    this.subscription.add(this.wishList.addWishListData(data).subscribe());
   }
 
   addToCart(product: Product) {
     this.cartService.cart(product);
+  }
+
+  pageSelector(pageSizeSelect: any) {
+    this.page = pageSizeSelect;
+    this.getProductData();
+  }
+
+  nextPage() {
+    if(this.page < this.totalPages)
+    this.page++;
+    this.getProductData();
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.getProductData(); 
+    }
   }
 
   ngOnDestroy(): void {

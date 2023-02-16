@@ -13,7 +13,7 @@
                       <h1><span>E</span>-SHOPPER</h1>
                       <h2>{{ slide.title }}</h2>
                       <p>
-                        {{ slide.description }}
+                        {{ slide.content }}
                       </p>
                       <button type="button" class="btn btn-default get">
                         Get it now
@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-sm-6">
                       <img
-                        [src]="slide.banner"
-                        [alt]="slide.alt"
+                        [src]="urlInitial+slide.path"
+                        [alt]="urlInitial+slide.path"
                         [title]="slide.title"
                       />
                     </div>

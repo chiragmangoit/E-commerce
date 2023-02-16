@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
+import { baseUrl } from 'src/environments/environment';
 import { LoggedUser } from '../../data/models/login.model';
 import { RespData } from '../../data/models/responseData.model';
 import { User } from '../../data/models/userData.model';
@@ -16,7 +17,7 @@ export class AuthService {
 
   signUp(userData: User) {
     return this.http
-      .post('http://95.111.202.157/mangoproject/public/api/signup', {
+      .post(`${baseUrl}user-auth/login`, {
         first_name: userData.firstName,
         last_name: userData.lastName,
         email: userData.email,
@@ -30,17 +31,17 @@ export class AuthService {
 
   signIn(userData: { email: string; password: string }) {
     return this.http
-      .post<RespData>('http://95.111.202.157/mangoproject/public/api/login', {
+      .post<RespData>(`${baseUrl}user-auth/login`, {
         email: userData['email'],
         password: userData['password'],
       })
       .pipe(
         catchError(this.handleError),
-        tap((respData: RespData) => {          
+        tap((respData) => {          
           this.handleAuth(
-            respData.data.email,
-            respData.data.id,
-            respData.data.token
+            respData['result'].user.email,
+            respData['result'].user.email,
+            respData['result'].token
           );
         })
       );

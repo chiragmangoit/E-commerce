@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { baseUrl } from 'src/environments/environment';
 import { LoggedUser } from '../models/login.model';
 import { Product } from '../models/product.model';
 
@@ -19,7 +20,7 @@ export class CheckoutService {
   onCheckout(formData: {}, product: Product[]) {
     this.details.next(formData);
     this.http
-      .post('http://95.111.202.157/mangoproject/public/api/checkout', {
+      .post('mangoproject/public/api/checkout', {
         user_id: product[0]['cart_id'],
         compony_name: formData['companyName'],
         email: formData['email'],
@@ -41,7 +42,7 @@ export class CheckoutService {
 
   onPayout(product: Product[], checkoutAmount: number) {
     return this.http
-      .post('http://95.111.202.157/mangoproject/public/api/payment-details', {
+      .post('mangoproject/public/api/payment-details', {
         user_id: product[0]['cart_id'],
         card_name: 'chirag',
         total_amount: checkoutAmount,
@@ -50,7 +51,7 @@ export class CheckoutService {
 
   oderList() {
     let userData = JSON.parse(localStorage.getItem('userData'));
-    let url = 'http://95.111.202.157/mangoproject/public/api/order-list';
+    let url = `${baseUrl}` +  'mangoproject/public/api/order-list';
     return this.http.post<Product>(url, {
       user_id: userData.userId,
     });

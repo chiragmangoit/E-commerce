@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
+import { CategoryService } from 'src/app/e-commerce/data/services/category.service';
 
 @Component({
   selector: 'app-filter-bar',
@@ -6,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter-bar.component.css'],
 })
 export class FilterBarComponent implements OnInit {
-  constructor() {}
+  categorySubscription: Subscription;
+  categoryData: any;
+  selectedIndex: number;
+  defaultCategory: number;
 
-  ngOnInit(): void {}
+
+  constructor( private categoryService: CategoryService,) {}
+
+  ngOnInit(): void {
+    this.categorySubscription = this.categoryService
+    .getCategory()
+    .subscribe((catData) => {
+      this.categoryData = catData;
+      this.defaultCategory = this.categoryData[0].id;
+    });
+  }
+
+  showProducts(id: number, index: number) {
+    // this.products = this.productsData.filter(
+    //   (product) => product.categories[0].id === id
+    // );    
+    console.log(index);
+    
+    this.selectedIndex = index;
+  }
+
   public someRange2: number[] = [40, 350];
   someRange2config: any = {
     behaviour: 'drag',
